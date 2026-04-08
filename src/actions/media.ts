@@ -56,6 +56,7 @@ export async function deleteMediaFile(filename: string) {
 
         await fs.unlink(filePath);
         revalidatePath("/dashboard/media");
+        revalidatePath("/", "layout");
         return { success: true };
     } catch (error: any) {
         console.error("Error deleting media file:", error);

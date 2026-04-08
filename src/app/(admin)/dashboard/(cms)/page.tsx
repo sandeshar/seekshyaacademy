@@ -46,9 +46,9 @@ const cmsPages = [
         stats: "Real-time"
     },
     {
-        title: "Learning Hub CMS",
+        title: "Blogs Page CMS",
         description: "Configure your blog and resource center - Hero titles and CTA sections.",
-        href: "/dashboard/learning-hub-page",
+        href: "/dashboard/blogs-page",
         icon: "menu_book",
         stats: "Content"
     },

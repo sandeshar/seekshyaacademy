@@ -12,11 +12,11 @@ import {
     deleteHubSubcategory
 } from "@/actions/categories";
 
-export default function LearningHubTaxonomy() {
+export default function BlogsTaxonomy() {
     return (
         <TaxonomyManager
-            title="Learning Hub Taxonomy"
-            description="Manage categories and subcategories for the Learning Hub articles."
+            title="Blogs Taxonomy"
+            description="Manage categories and subcategories for the Blogs articles."
             actions={{
                 getCategories: getHubCategories,
                 createCategory: createHubCategory,

@@ -4,19 +4,19 @@ import CategoryFilters from "./_components/CategoryFilters";
 import CombinedArticles from "./_components/CombinedArticles";
 import ArticleSearch from "./_components/ArticleSearch";
 import { Metadata } from "next";
-import { getLearningHubPage } from "@/actions/cms-actions";
+import { getBlogsPage } from "@/actions/cms-actions";
 
 export async function generateMetadata(): Promise<Metadata> {
-    const data = await getLearningHubPage();
+    const data = await getBlogsPage();
 
     return {
-        title: data?.seo?.title || "Learning Hub",
+        title: data?.seo?.title || "Blogs",
         description: data?.seo?.description || "Expert insights, study tips, and resources for Chartered Accountancy students.",
     };
 }
 
-export default async function LearningHub({ searchParams }: { searchParams: Promise<{ category?: string; subcategory?: string; q?: string; page?: string }> }) {
-    const plainPageData = await getLearningHubPage();
+export default async function Blogs({ searchParams }: { searchParams: Promise<{ category?: string; subcategory?: string; q?: string; page?: string }> }) {
+    const plainPageData = await getBlogsPage();
 
     const { category, subcategory, q, page } = await searchParams;
     const currentPage = parseInt(page || '1', 10);

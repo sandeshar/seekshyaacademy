@@ -32,7 +32,7 @@ const ArticleGrid = async () => {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {articles.map((article, index) => (
-                    <Link key={article._id || index} href={`/learning-hub/${article.slug || article._id}`} className="block h-full">
+                    <Link key={article._id || index} href={`/blogs/${article.slug || article._id}`} className="block h-full">
                         <article className="flex flex-col bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 h-full">
                             <div
                                 className="h-48 w-full bg-gray-200 bg-cover bg-center"

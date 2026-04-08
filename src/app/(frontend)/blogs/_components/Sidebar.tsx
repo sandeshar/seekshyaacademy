@@ -86,7 +86,7 @@ const Sidebar = async ({ showWidgets = true }: { showWidgets?: boolean }) => {
                         articles.map((article: any) => (
                             <Link
                                 key={article._id}
-                                href={`/learning-hub/${article.slug}`}
+                                href={`/blogs/${article.slug}`}
                                 className="p-4 border-b border-gray-100 hover:bg-gray-50 transition-colors group flex gap-4"
                             >
                                 {article.featuredImage && (

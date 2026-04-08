@@ -41,7 +41,7 @@ const NavbarSchema = new Schema({
                 ]
             },
             { label: 'Faculty', href: '/faculty' },
-            { label: 'Learning Hub', href: '/learning-hub' },
+            { label: 'Blogs', href: '/blogs' },
             { label: 'Notices', href: '/notices' },
         ]
     },

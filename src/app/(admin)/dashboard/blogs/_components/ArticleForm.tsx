@@ -77,7 +77,7 @@ export default function ArticleForm({ params }: { params?: { id: string } }) {
                 await createArticle(payload);
                 toast.success("Article created successfully");
             }
-            router.push("/dashboard/learning-hub");
+            router.push("/dashboard/blogs");
         } catch (error: any) {
             console.error("Error saving article", error);
             toast.error(error.message || "Something went wrong");
@@ -91,12 +91,12 @@ export default function ArticleForm({ params }: { params?: { id: string } }) {
             <div className="sticky top-0 z-50 bg-gray-50/80 backdrop-blur-md -mx-8 px-8 py-6 mb-8 border-b border-gray-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
                     <h1 className="text-3xl font-black text-gray-900 tracking-tight">{isEditing ? "Edit" : "Create"} Article</h1>
-                    <p className="text-gray-500 mt-1">Write and publish educational content for the Learning Hub.</p>
+                    <p className="text-gray-500 mt-1">Write and publish educational content for the Blogs.</p>
                 </div>
                 <div className="flex gap-3">
                     <button
                         type="button"
-                        onClick={() => router.push("/dashboard/learning-hub")}
+                        onClick={() => router.push("/dashboard/blogs")}
                         className="px-6 py-3 bg-white border border-gray-200 text-gray-700 font-bold rounded-xl hover:bg-gray-50 transition-all shadow-sm"
                     >
                         Back to List

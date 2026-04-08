@@ -40,13 +40,13 @@ export default function AdminDashboard() {
   const statCards = [
     { label: "Total Users", value: stats.users, icon: "person", color: "bg-blue-600", link: "/dashboard/users" },
     { label: "Faculty Members", value: stats.teachers, icon: "groups", color: "bg-purple-600", link: "/dashboard/teachers" },
-    { label: "Published Articles", value: stats.articles, icon: "article", color: "bg-green-600", link: "/dashboard/learning-hub" },
+    { label: "Published Articles", value: stats.articles, icon: "article", color: "bg-green-600", link: "/dashboard/blogs" },
     { label: "Active Notices", value: stats.notices, icon: "notifications", color: "bg-amber-600", link: "/dashboard/notices" },
     { label: "Contact Inquiries", value: stats.contacts, icon: "mail", color: "bg-rose-600", link: "/dashboard/contacts" },
   ];
 
   const quickActions = [
-    { label: "New Article", icon: "add_circle", href: "/dashboard/learning-hub/new", color: "text-blue-600" },
+    { label: "New Article", icon: "add_circle", href: "/dashboard/blogs/new", color: "text-blue-600" },
     { label: "Add Faculty", icon: "person_add", href: "/dashboard/teachers/new", color: "text-purple-600" },
     { label: "Post Notice", icon: "campaign", href: "/dashboard/notices", color: "text-amber-600" },
     { label: "Site Settings", icon: "settings", href: "/dashboard/settings", color: "text-slate-600" },
@@ -93,7 +93,7 @@ export default function AdminDashboard() {
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
-                  href="/dashboard/learning-hub/new"
+                  href="/dashboard/blogs/new"
                   className="bg-white text-blue-600 px-6 py-2.5 rounded-xl font-bold text-sm hover:bg-blue-50 transition-colors whitespace-nowrap"
                 >
                   Write New Post

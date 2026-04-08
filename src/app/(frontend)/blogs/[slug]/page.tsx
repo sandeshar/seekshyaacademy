@@ -94,17 +94,17 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
         const words = article.content ? (article.content.replace(/<[^>]*>/g, ' ').split(/\s+/).filter(Boolean).length) : 0;
         const readTime = Math.max(1, Math.ceil(words / 200));
-        const pageUrl = apiUrl(`/learning-hub/${article.slug || article._id}`);
+        const pageUrl = apiUrl(`/blogs/${article.slug || article._id}`);
 
         return (
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
                     <Link
-                        href="/learning-hub"
+                        href="/blogs"
                         className="inline-flex items-center gap-2 text-sm font-bold text-primary group transition-all"
                     >
                         <span className="material-symbols-outlined text-[18px] transition-transform group-hover:-translate-x-1">arrow_back</span>
-                        Back to Learning Hub
+                        Back to Blogs
                     </Link>
                     <div className="hidden sm:flex items-center gap-4 text-xs font-bold text-gray-500 uppercase tracking-widest">
                         <span className="flex items-center gap-1.5">
@@ -168,14 +168,14 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                             <div className="mt-12">
                                 <div className="flex items-center justify-between mb-8">
                                     <h3 className="text-2xl font-black text-slate-900 font-lexend">Continue Reading</h3>
-                                    <Link href="/learning-hub" className="text-primary font-bold text-sm hover:underline flex items-center gap-1">
+                                    <Link href="/blogs" className="text-primary font-bold text-sm hover:underline flex items-center gap-1">
                                         View All
                                         <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
                                     </Link>
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     {related.slice(0, 2).map((rel: any) => (
-                                        <Link key={rel._id} href={`/learning-hub/${rel.slug || rel._id}`} className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-100 flex flex-col h-full">
+                                        <Link key={rel._id} href={`/blogs/${rel.slug || rel._id}`} className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-100 flex flex-col h-full">
                                             {rel.featuredImage && (
                                                 <div className="relative h-48 overflow-hidden">
                                                     <img src={rel.featuredImage} alt={rel.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -258,7 +258,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                                     </div>
                                     <div className="p-4 space-y-5">
                                         {related.map((rel: any) => (
-                                            <Link key={rel._id} href={`/learning-hub/${rel.slug || rel._id}`} className="group block">
+                                            <Link key={rel._id} href={`/blogs/${rel.slug || rel._id}`} className="group block">
                                                 <div className="flex gap-4">
                                                     {rel.featuredImage && (
                                                         <div className="relative shrink-0">

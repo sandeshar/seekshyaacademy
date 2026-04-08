@@ -17,7 +17,7 @@ interface IArticle {
     featured?: boolean;
 }
 
-export default function LearningHubAdmin() {
+export default function BlogsAdmin() {
     const router = useRouter();
     const [articles, setArticles] = useState<IArticle[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -105,14 +105,14 @@ export default function LearningHubAdmin() {
                     </div>
                     <div className="flex items-center gap-3 w-full md:w-auto">
                         <Link
-                            href="/dashboard/learning-hub/featured"
+                            href="/dashboard/blogs/featured"
                             className="px-4 py-2.5 bg-amber-50 text-amber-700 font-semibold rounded-xl hover:bg-amber-100 transition-all shadow-sm flex items-center gap-2 whitespace-nowrap"
                         >
                             <span className="material-symbols-outlined text-[20px]">star</span>
                             Featured Articles
                         </Link>
                         <Link
-                            href="/dashboard/learning-hub/new"
+                            href="/dashboard/blogs/new"
                             className="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 flex items-center gap-2 whitespace-nowrap"
                         >
                             <span className="material-symbols-outlined text-[20px]">add</span>
@@ -187,7 +187,7 @@ export default function LearningHubAdmin() {
                                     <td className="px-8 py-5 text-right">
                                         <div className="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                             <Link
-                                                href={`/dashboard/learning-hub/edit/${article._id}`}
+                                                href={`/dashboard/blogs/edit/${article._id}`}
                                                 className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                                                 title="Edit"
                                             >

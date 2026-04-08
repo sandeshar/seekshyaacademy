@@ -41,14 +41,23 @@ const menuItems = [
     ],
   },
   {
-    name: "Learning Hub",
+    name: "Blogs",
     icon: "book",
-    permission: "learning-hub",
+    permission: "blogs",
     subItems: [
-      { name: "All Articles", href: "/dashboard/learning-hub" },
-      { name: "Featured Articles", href: "/dashboard/learning-hub/featured" },
-      { name: "Categories", href: "/dashboard/learning-hub/categories" },
-      { name: "Learning Hub CMS", href: "/dashboard/learning-hub-page" },
+      { name: "All Articles", href: "/dashboard/blogs" },
+      { name: "Featured Articles", href: "/dashboard/blogs/featured" },
+      { name: "Categories", href: "/dashboard/blogs/categories" },
+      { name: "Blogs Page CMS", href: "/dashboard/blogs-page" },
+    ],
+  },
+  {
+    name: "Site Pages",
+    icon: "pages",
+    permission: "cms",
+    subItems: [
+      { name: "All Pages", href: "/dashboard/pages" },
+      { name: "Create New Page", href: "/dashboard/pages/new" },
     ],
   },
   {

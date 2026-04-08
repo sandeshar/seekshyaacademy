@@ -104,18 +104,18 @@ const CMSPage = ({
     if (!data) return null;
 
     return (
-        <div className="max-w-5xl mx-auto pb-20 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="max-w-5xl mx-auto pb-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
             {/* Stickied Topbar & Tabs Wrapper */}
-            <div className="sticky top-16 lg:top-0 z-20 bg-gray-50/95 backdrop-blur-md -mx-4 md:-mx-8 px-4 md:px-8 pt-6 pb-2 mb-8 border-b border-gray-200/50">
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-6">
+            <div className="sticky top-16 lg:top-0 z-20 bg-gray-50/95 backdrop-blur-md -mx-4 md:-mx-8 px-4 md:px-8 pt-2 pb-1 mb-4 border-b border-gray-200/50">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 mb-3">
                     <div>
                         <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">{title}</h1>
-                        <p className="text-sm text-slate-500 mt-1 font-medium">{description}</p>
+                        <p className="text-sm text-slate-500 mt-0.5 font-medium">{description}</p>
                     </div>
                     <button
                         onClick={handleSave}
                         disabled={saving}
-                        className="group relative px-8 py-3 bg-slate-900 text-white font-bold rounded-2xl hover:bg-primary transition-all shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] hover:shadow-[0_8px_25px_-4px_rgba(126,25,27,0.3)] flex items-center gap-2 disabled:opacity-50 active:scale-95"
+                        className="group relative px-6 py-2.5 bg-slate-900 text-white font-bold rounded-xl hover:bg-primary transition-all shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] hover:shadow-[0_8px_25px_-4px_rgba(126,25,27,0.3)] flex items-center gap-2 disabled:opacity-50 active:scale-95"
                     >
                         {saving ? (
                             <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>

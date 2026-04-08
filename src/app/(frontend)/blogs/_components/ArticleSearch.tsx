@@ -42,7 +42,7 @@ const ArticleSearch = () => {
             params.delete('q');
         }
         params.delete('page'); // Reset to page 1 on search
-        router.push(`/learning-hub?${params.toString()}`, { scroll: false });
+        router.push(`/blogs?${params.toString()}`, { scroll: false });
     };
 
     const clearSearch = () => {

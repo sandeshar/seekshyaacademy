@@ -70,7 +70,7 @@ const CombinedArticles = async ({ selectedCategory, selectedSubcategory, searchQ
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {articles.map((article) => (
-                    <Link key={article._id} href={`/learning-hub/${article.slug || article._id}`} className="block h-full">
+                    <Link key={article._id} href={`/blogs/${article.slug || article._id}`} className="block h-full">
                         <article className="flex flex-col bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 h-full">
                             <div
                                 className="h-48 w-full bg-gray-200 bg-cover bg-center relative"
@@ -103,7 +103,7 @@ const CombinedArticles = async ({ selectedCategory, selectedSubcategory, searchQ
                                         </div>
                                         <span className="text-xs font-medium text-gray-600">By {article.author || 'Lakshya Team'}</span>
                                     </div>
-                                    <CardShare title={article.title} url={apiUrl(`/learning-hub/${article.slug || article._id}`)} />
+                                    <CardShare title={article.title} url={apiUrl(`/blogs/${article.slug || article._id}`)} />
                                 </div>
                             </div>
                         </article>

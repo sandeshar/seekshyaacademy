@@ -10,9 +10,10 @@ export const CACHE_TAGS = {
     COURSEPAGE: 'course_page',
     FACULTYPAGE: 'faculty_page',
     NOTICESPAGE: 'notices_page',
-    LEARNINGHUBPAGE: 'learning_hub_page',
+    BLOGSPAGE: 'blogs_page',
     TEACHERS: 'teachers',
     NOTICES: 'notices',
     CATEGORIES: 'categories',
     COURSES: 'courses',
+    PAGES: 'pages',
 } as const;

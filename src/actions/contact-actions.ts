@@ -77,6 +77,7 @@ export async function submitContactForm(formData: FormData) {
         }
 
         revalidatePath("/dashboard/contacts");
+        revalidatePath("/", "layout");
         return { success: "Message sent successfully" };
     } catch (error: any) {
         console.error("submitContactForm error:", error);

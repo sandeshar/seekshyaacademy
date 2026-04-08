@@ -18,7 +18,7 @@ async function createCategory(Model: any, data: any) {
     if (!(await hasPermission('cms')) &&
         !(await hasPermission('teachers')) &&
         !(await hasPermission('notices')) &&
-        !(await hasPermission('learning-hub')) &&
+        !(await hasPermission('blogs')) &&
         !(await hasPermission('courses'))) {
         throw new Error("Unauthorized");
     }
@@ -38,7 +38,7 @@ async function updateCategory(Model: any, id: string, data: any) {
     if (!(await hasPermission('cms')) &&
         !(await hasPermission('teachers')) &&
         !(await hasPermission('notices')) &&
-        !(await hasPermission('learning-hub')) &&
+        !(await hasPermission('blogs')) &&
         !(await hasPermission('courses'))) {
         throw new Error("Unauthorized");
     }
@@ -54,7 +54,7 @@ async function deleteCategory(Model: any, id: string) {
     if (!(await hasPermission('cms')) &&
         !(await hasPermission('teachers')) &&
         !(await hasPermission('notices')) &&
-        !(await hasPermission('learning-hub')) &&
+        !(await hasPermission('blogs')) &&
         !(await hasPermission('courses'))) {
         throw new Error("Unauthorized");
     }

@@ -52,8 +52,10 @@ export async function proxy(request: NextRequest) {
             }
         }
 
-        if (pathname.startsWith('/dashboard/learning-hub') && !permissions.includes('learning-hub')) {
-            return NextResponse.redirect(new URL('/dashboard', request.url));
+        if (pathname.startsWith('/dashboard/blogs') || pathname.startsWith('/dashboard/blogs-page')) {
+            if (!permissions.includes('blogs')) {
+                return NextResponse.redirect(new URL('/dashboard', request.url));
+            }
         }
 
         if (pathname.startsWith('/dashboard/courses') || pathname.startsWith('/dashboard/courses-page')) {

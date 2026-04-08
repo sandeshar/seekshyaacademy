@@ -93,7 +93,7 @@ const AboutSchema: Schema = new Schema({
         badgeText: { type: String, default: "Est 1990" },
         title: { type: String, default: "Shaping the Future of Chartered Accountancy" },
         description: { type: String, default: "Seekshya Academy has been a beacon of excellence in Chartered Accountancy education since 1990. Our commitment to quality teaching and student success has made us a trusted name among ICAN CA aspirants." },
-        backgroundImage: { type: String, default: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2070&auto=format&fit=crop" },
+        backgroundImage: { type: String, default: "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?q=80&w=2070&auto=format&fit=crop" },
         overlayOpacity: { type: Number, default: 80 },
         primaryButton: {
             text: { type: String, default: "Explore Courses" },
@@ -128,7 +128,7 @@ const AboutSchema: Schema = new Schema({
         badgeText: { type: String, default: "About Seekshya Academy" },
         title: { type: String, default: "Committed to Your Chartered Accountancy Success" },
         description: { type: String, default: "At Seekshya Academy, we believe in empowering our students with the knowledge and skills needed to excel in the Chartered Accountancy profession. Our experienced faculty and comprehensive curriculum ensure that you are well-prepared for every stage of your journey." },
-        imageUrl: { type: String, default: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1470&auto=format&fit=crop" },
+        imageUrl: { type: String, default: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1470&auto=format&fit=crop" },
         cards: {
             type: [
                 {
@@ -161,7 +161,7 @@ const AboutSchema: Schema = new Schema({
             link: { type: String, default: "/register" },
             icon: { type: String, default: "how_to_reg" }
         },
-        imageUrl: { type: String, default: "https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1470&auto=format&fit=crop" }
+        imageUrl: { type: String, default: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1470&auto=format&fit=crop" }
     },
     philosophy: {
         isVisible: { type: Boolean, default: true },

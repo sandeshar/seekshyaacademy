@@ -106,7 +106,7 @@ export async function getFeaturedArticle(filter: any = {}) {
 
 export async function createArticle(data: any) {
     try {
-        if (!(await hasPermission('learning-hub'))) {
+        if (!(await hasPermission('blogs'))) {
             throw new Error("Unauthorized");
         }
         await dbConnect();
@@ -123,7 +123,7 @@ export async function createArticle(data: any) {
 
 export async function updateArticle(id: string, data: any) {
     try {
-        if (!(await hasPermission('learning-hub'))) {
+        if (!(await hasPermission('blogs'))) {
             throw new Error("Unauthorized");
         }
         await dbConnect();
@@ -140,7 +140,7 @@ export async function updateArticle(id: string, data: any) {
 
 export async function deleteArticle(id: string) {
     try {
-        if (!(await hasPermission('learning-hub'))) {
+        if (!(await hasPermission('blogs'))) {
             throw new Error("Unauthorized");
         }
         await dbConnect();

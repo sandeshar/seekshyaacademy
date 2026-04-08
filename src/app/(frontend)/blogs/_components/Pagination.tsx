@@ -18,7 +18,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages }) => {
     const createPageUrl = (pageNumber: number) => {
         const params = new URLSearchParams(searchParams.toString());
         params.set('page', pageNumber.toString());
-        return `/learning-hub?${params.toString()}`;
+        return `/blogs?${params.toString()}`;
     };
 
     const handlePageChange = (pageNumber: number) => {
@@ -28,7 +28,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages }) => {
     const renderPageNumbers = () => {
         const pages = [];
         const maxVisiblePages = 5;
-        
+
         let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
         let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
 
@@ -41,11 +41,10 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages }) => {
                 <button
                     key={i}
                     onClick={() => handlePageChange(i)}
-                    className={`w-10 h-10 rounded-lg text-sm font-semibold transition-all ${
-                        currentPage === i
+                    className={`w-10 h-10 rounded-lg text-sm font-semibold transition-all ${currentPage === i
                             ? 'bg-primary text-white shadow-md'
                             : 'bg-white text-slate-600 hover:bg-gray-100 border border-gray-200'
-                    }`}
+                        }`}
                 >
                     {i}
                 </button>

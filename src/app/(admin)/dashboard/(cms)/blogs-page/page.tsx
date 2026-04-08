@@ -2,7 +2,7 @@
 
 import CMSSection from "../../_components/CMSSection";
 import CMSPage from "../../_components/CMSPage";
-import { getLearningHubPage, updateLearningHubPage } from "@/actions/cms-actions";
+import { getBlogsPage, updateBlogsPage } from "@/actions/cms-actions";
 
 const TABS = [
     { id: "hero", label: "Hero", icon: "book" },
@@ -12,13 +12,13 @@ const TABS = [
 
 const inputClass = "w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-medium";
 
-export default function LearningHubCMS() {
+export default function BlogsCMS() {
     return (
         <CMSPage
-            title="Learning Hub Settings"
+            title="Blogs Settings"
             description="Customize the appearance and content of your blog and resource center."
-            getAction={getLearningHubPage}
-            updateAction={updateLearningHubPage}
+            getAction={getBlogsPage}
+            updateAction={updateBlogsPage}
             tabs={TABS}
             renderTabContent={(activeTab, data, setData) => (
                 <>

@@ -8,7 +8,7 @@ import CoursePage from "@/db/course-page";
 import FacultyPage from "@/db/faculty-page";
 import Homepage from "@/db/homepage";
 import NoticesPage from "@/db/notices-page";
-import LearningHubPage from "@/db/learning-hub-page";
+import BlogsPage from "@/db/blogs-page";
 import { CACHE_TAGS } from "@/utils/cachetags";
 import { hasPermission } from "@/utils/auth";
 
@@ -132,21 +132,21 @@ export const updateNoticesPage = async (data: any) => {
     return JSON.parse(JSON.stringify(page));
 };
 
-export const getLearningHubPage = async () => {
+export const getBlogsPage = async () => {
     "use cache";
-    cacheTag(CACHE_TAGS.LEARNINGHUBPAGE);
+    cacheTag(CACHE_TAGS.BLOGSPAGE);
     await dbConnect();
-    let page = await LearningHubPage.findOne().lean();
+    let page = await BlogsPage.findOne().lean();
     if (!page) {
-        page = await LearningHubPage.create({});
+        page = await BlogsPage.create({});
     }
     return JSON.parse(JSON.stringify(page));
 };
-export const updateLearningHubPage = async (data: any) => {
+export const updateBlogsPage = async (data: any) => {
     if (!(await hasPermission('cms'))) throw new Error("Unauthorized");
     await dbConnect();
-    let page = await LearningHubPage.findOneAndUpdate({}, data, { new: true, upsert: true }).lean();
-    revalidateTag(CACHE_TAGS.LEARNINGHUBPAGE, 'max');
+    let page = await BlogsPage.findOneAndUpdate({}, data, { new: true, upsert: true }).lean();
+    revalidateTag(CACHE_TAGS.BLOGSPAGE, 'max');
     revalidatePath('/', 'layout');
     revalidatePath('/dashboard', 'layout');
     return JSON.parse(JSON.stringify(page));

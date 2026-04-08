@@ -13,7 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         '/contact',
         '/courses',
         '/faculty',
-        '/learning-hub',
+        '/blogs',
         '/notices',
     ].map(route => ({
         url: `${baseUrl}${route}`,
@@ -25,7 +25,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Dynamic routes: Articles
     const articles = await getArticles({ status: 'published' }, { createdAt: -1 }, undefined, undefined, { slug: 1, updatedAt: 1 });
     const articleRoutes = articles.map((article: any) => ({
-        url: `${baseUrl}/learning-hub/${article.slug}`,
+        url: `${baseUrl}/blogs/${article.slug}`,
         lastModified: new Date(article.updatedAt),
         changeFrequency: 'daily' as const,
         priority: 0.95,

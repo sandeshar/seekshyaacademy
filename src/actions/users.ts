@@ -27,6 +27,7 @@ export async function createUser(data: any) {
         // Password hashing is handled by the User model's pre-save hook
         const user = await User.create(data);
         revalidatePath('/dashboard', 'layout');
+        revalidatePath('/', 'layout');
         return JSON.parse(JSON.stringify(user));
     } catch (error: any) {
         throw new Error(error.message);
@@ -58,6 +59,7 @@ export async function updateUser(id: string, data: any) {
         await user.save();
 
         revalidatePath('/dashboard', 'layout');
+        revalidatePath('/', 'layout');
         return JSON.parse(JSON.stringify(user));
     } catch (error: any) {
         throw new Error(error.message);
@@ -72,6 +74,7 @@ export async function deleteUser(id: string) {
         await dbConnect();
         await User.findByIdAndDelete(id);
         revalidatePath('/dashboard', 'layout');
+        revalidatePath('/', 'layout');
         return { success: true };
     } catch (error: any) {
         throw new Error(error.message);

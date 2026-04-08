@@ -65,11 +65,11 @@ const FeaturedArticle = async ({ selectedCategory }: { selectedCategory?: string
                             <span>{first ? (first.content?.split(' ').length > 0 ? Math.ceil(first.content.split(' ').length / 200) + ' min read' : '1 min read') : ''}</span>
                         </div>
                         <div className="flex items-center gap-4">
-                            <Link href={`/learning-hub/${first?.slug || first?._id}`} className="w-fit h-12 px-6 bg-primary hover:bg-primary-dark text-white text-sm font-bold rounded-lg transition-colors flex items-center gap-2">
+                            <Link href={`/blogs/${first?.slug || first?._id}`} className="w-fit h-12 px-6 bg-primary hover:bg-primary-dark text-white text-sm font-bold rounded-lg transition-colors flex items-center gap-2">
                                 <span>Read Full Guide</span>
                                 <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
                             </Link>
-                            <CardShare title={first?.title || ''} url={apiUrl(`/learning-hub/${first?.slug || first?._id}`)} />
+                            <CardShare title={first?.title || ''} url={apiUrl(`/blogs/${first?.slug || first?._id}`)} />
                         </div>
                     </div>
                 </div>

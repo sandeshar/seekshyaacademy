@@ -36,7 +36,7 @@ export default function AdminLayoutClient({
                     <div className="ml-4 font-bold text-primary">Admin Panel</div>
                 </header>
 
-                <main className="flex-1 p-4 md:p-8 lg:ml-64">
+                <main className="flex-1 p-2 md:p-4 lg:ml-64">
                     {children}
                 </main>
             </div>

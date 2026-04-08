@@ -20,7 +20,7 @@ const ALL_PERMISSIONS = [
     { id: 'teachers', label: 'Teachers' },
     { id: 'courses', label: 'Courses' },
     { id: 'notices', label: 'Notices' },
-    { id: 'learning-hub', label: 'Learning Hub' },
+    { id: 'blogs', label: 'Blogs' },
     { id: 'media', label: 'Media' },
     { id: 'contacts', label: 'Contacts' },
     { id: 'users', label: 'Users' },

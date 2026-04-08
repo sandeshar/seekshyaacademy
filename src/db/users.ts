@@ -1,7 +1,7 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
 import bcrypt from 'bcryptjs';
 
-export type Permission = 'cms' | 'teachers' | 'courses' | 'notices' | 'learning-hub' | 'media' | 'contacts' | 'users' | 'settings';
+export type Permission = 'cms' | 'teachers' | 'courses' | 'notices' | 'blogs' | 'media' | 'contacts' | 'users' | 'settings';
 
 export interface IUser extends Document {
     name: string;

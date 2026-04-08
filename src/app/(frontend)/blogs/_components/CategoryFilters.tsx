@@ -14,7 +14,7 @@ const CategoryFilters = async ({ selectedCategory }: { selectedCategory?: string
         <section className="overflow-x-auto pb-2 scrollbar-hide">
             <div className="flex gap-3 min-w-max">
                 <Link
-                    href="/learning-hub"
+                    href="/blogs"
                     className={`flex h-10 items-center gap-x-2 rounded-full pl-4 pr-6 transition-all ${!selectedCategory ? 'bg-primary text-white scale-105' : 'bg-[#e8ebf3] text-[#0e121b] hover:bg-gray-200'}`}
                 >
                     <span className="material-symbols-outlined text-[20px]">apps</span>
@@ -23,7 +23,7 @@ const CategoryFilters = async ({ selectedCategory }: { selectedCategory?: string
                 {categories.map((cat) => (
                     <Link
                         key={cat._id}
-                        href={`/learning-hub?category=${cat.slug}`}
+                        href={`/blogs?category=${cat.slug}`}
                         className={`flex h-10 items-center gap-x-2 rounded-full pl-4 pr-6 transition-all ${selectedCategory === cat.slug ? 'bg-primary text-white scale-105' : 'bg-[#e8ebf3] text-[#0e121b] hover:bg-gray-200'}`}
                     >
                         <span className="material-symbols-outlined text-[20px]">menu_book</span>

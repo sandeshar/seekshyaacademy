@@ -38,7 +38,7 @@ interface Subcategory {
     categoryId: string;
 }
 
-type ContentType = 'courses' | 'notices' | 'teachers' | 'learning-hub';
+type ContentType = 'courses' | 'notices' | 'teachers' | 'blogs';
 
 export default function NavbarManager() {
     const router = useRouter();
@@ -195,7 +195,7 @@ export default function NavbarManager() {
                     cats = await CategoryActions.getTeacherCategories();
                     subs = await CategoryActions.getTeacherSubcategories();
                     break;
-                case 'learning-hub':
+                case 'blogs':
                     cats = await CategoryActions.getHubCategories();
                     subs = await CategoryActions.getHubSubcategories();
                     break;
@@ -574,7 +574,7 @@ export default function NavbarManager() {
                                                 <div className="space-y-3">
                                                     {/* Content Type Selector */}
                                                     <div className="flex gap-1 overflow-x-auto no-scrollbar pb-1">
-                                                        {(['courses', 'notices', 'teachers', 'learning-hub'] as ContentType[]).map(type => (
+                                                        {(['courses', 'notices', 'teachers', 'blogs'] as ContentType[]).map(type => (
                                                             <button
                                                                 key={type}
                                                                 onClick={() => handleContentTypeChange(type)}

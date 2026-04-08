@@ -46,7 +46,7 @@ export default function ManageFeatured() {
                     <p className="text-gray-500 mt-1">These articles are currently featured on the front page.</p>
                 </div>
                 <Link
-                    href="/dashboard/learning-hub"
+                    href="/dashboard/blogs"
                     className="px-5 py-2.5 bg-gray-100 text-gray-800 font-semibold rounded-xl hover:bg-gray-200 transition-all shadow-sm flex items-center gap-2"
                 >
                     <span className="material-symbols-outlined text-[18px]">arrow_back</span>
@@ -104,7 +104,7 @@ export default function ManageFeatured() {
                                                 Unfeature
                                             </button>
                                             <Link
-                                                href={`/dashboard/learning-hub/edit/${article._id}`}
+                                                href={`/dashboard/blogs/edit/${article._id}`}
                                                 className="px-4 py-2 bg-blue-50 text-blue-600 font-bold rounded-xl hover:bg-blue-100 transition-all text-sm flex items-center gap-2"
                                             >
                                                 <span className="material-symbols-outlined text-[18px]">edit</span>

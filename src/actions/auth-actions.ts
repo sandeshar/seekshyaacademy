@@ -94,7 +94,7 @@ export async function seedFirstAdmin(formData: any) {
             password: password,
             role: "admin",
             status: "active",
-            permissions: ["cms", "teachers", "courses", "notices", "learning-hub", "media", "contacts", "users", "settings"]
+            permissions: ["cms", "teachers", "courses", "notices", "blogs", "media", "contacts", "users", "settings"]
         });
 
         return { success: true, message: `First admin created successfully: ${admin.email}` };
@@ -119,7 +119,7 @@ export async function seedUserAnytime(formData: any) {
             password: password,
             role: role || "admin",
             status: "active",
-            permissions: ["cms", "teachers", "courses", "notices", "learning-hub", "media", "contacts", "users", "settings"]
+            permissions: ["cms", "teachers", "courses", "notices", "blogs", "media", "contacts", "users", "settings"]
         });
 
         return { success: true, message: `User created successfully: ${user.email}` };

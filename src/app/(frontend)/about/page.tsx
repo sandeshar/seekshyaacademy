@@ -23,15 +23,22 @@ export default async function AboutPage() {
     if (!plainData) return null;
 
     return (
-        <div className="flex min-h-screen flex-col bg-slate-50">
+        <div className="flex min-h-screen flex-col bg-white">
             {plainData.hero?.isVisible !== false && <AboutHero data={plainData.hero} />}
-            {plainData.qualities?.isVisible !== false && <StatsBar data={plainData.qualities} />}
-            <div className="layout-container bg-mountain-pattern bg-bottom bg-no-repeat bg-size-[100%_auto]">
-                {plainData.aboutUs?.isVisible !== false && <OurStory data={plainData.aboutUs} />}
-                {plainData.cta1?.isVisible !== false && <SyllabusHighlight data={plainData.cta1} />}
+
+            <div className="layout-container relative">
+                {/* Reordered: Philosophy first for academic focus */}
                 {plainData.philosophy?.isVisible !== false && <Philosophy data={plainData.philosophy} />}
+
+                {/* Stats bar in between content */}
+                {plainData.qualities?.isVisible !== false && <StatsBar data={plainData.qualities} />}
+
+                {/* Story follows stats */}
+                {plainData.aboutUs?.isVisible !== false && <OurStory data={plainData.aboutUs} />}
+
+                {/* Highlight/CTA before final footer CTA */}
+                {plainData.cta1?.isVisible !== false && <SyllabusHighlight data={plainData.cta1} />}
             </div>
-            {plainData.cta2?.isVisible !== false && <CTA data={plainData.cta2} />}
         </div>
     );
 }
