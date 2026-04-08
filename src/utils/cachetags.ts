@@ -1,0 +1,18 @@
+export const CACHE_TAGS = {
+    NAVBAR: 'navbar',
+    SETTINGS: 'settings',
+    FOOTER: 'footer',
+    ARTICLES: 'articles',
+    FEATURED_ARTICLES: 'featured_articles',
+    HOMEPAGE: 'homepage',
+    ABOUTPAGE: 'about_page',
+    CONTACTPAGE: 'contact_page',
+    COURSEPAGE: 'course_page',
+    FACULTYPAGE: 'faculty_page',
+    NOTICESPAGE: 'notices_page',
+    LEARNINGHUBPAGE: 'learning_hub_page',
+    TEACHERS: 'teachers',
+    NOTICES: 'notices',
+    CATEGORIES: 'categories',
+    COURSES: 'courses',
+} as const;

@@ -1,0 +1,353 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+:root {
+  --background: #f6f6f8;
+  --foreground: #171717;
+  --primary: #0D3E5C;
+  --primary-dark: #0A324A;
+  --secondary: #CC1F26;
+  --secondary-dark: #A3191E;
+  --accent-orange: #F7941D;
+  --accent-gold: #C5A059;
+  --background-light: #f6f6f8;
+  --background-dark: #111521;
+}
+
+@theme inline {
+  --color-background-light: var(--background-light);
+  --color-background-dark: var(--background-dark);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-secondary: var(--secondary);
+  --color-secondary-dark: var(--secondary-dark);
+  --color-accent-orange: var(--accent-orange);
+  --color-accent-gold: var(--accent-gold);
+
+  --font-display: Inter, sans-serif;
+  --font-sans: Inter, sans-serif;
+  --font-lexend: Lexend, sans-serif;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+/* Tiptap & Prose Customizations */
+@layer base {
+
+  /* Bullet List Indentation Fix */
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    scroll-margin-top: 100px;
+  }
+
+  .prose ul,
+  .prose ol {
+    @apply space-y-2;
+  }
+
+  .prose li {
+    @apply pl-1;
+  }
+
+  .prose ul li p,
+  .prose ol li p {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+  }
+
+  /* Task List Support */
+  ul[data-type="taskList"] {
+    list-style: none;
+    padding: 0;
+  }
+
+  ul[data-type="taskList"] li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  ul[data-type="taskList"] li>label {
+    flex: 0 0 auto;
+    user-select: none;
+    margin-top: 0.25rem;
+  }
+
+  ul[data-type="taskList"] li>div {
+    flex: 1 1 auto;
+  }
+
+  /* Code Block Lowlight Styling */
+  .prose pre {
+    @apply bg-slate-900 text-slate-100 rounded-2xl p-6 overflow-x-auto my-8 border border-slate-800 shadow-2xl;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .prose pre code {
+    @apply bg-transparent p-0 text-[13px] leading-relaxed;
+    font-family: inherit;
+  }
+
+  .prose [style*="text-align: center"],
+  .prose .text-center {
+    text-align: center;
+  }
+
+  .prose [style*="text-align: right"],
+  .prose .text-right {
+    text-align: right;
+  }
+
+  .prose [style*="text-align: justify"],
+  .prose .text-justify {
+    text-align: justify;
+  }
+
+  /* Tables */
+  .prose table {
+    @apply border-collapse table-auto w-full my-8 border border-slate-200 rounded-xl overflow-hidden shadow-sm;
+  }
+
+  .prose th {
+    @apply bg-slate-50 font-bold text-slate-800 border border-slate-200 px-4 py-3 text-left;
+  }
+
+  .prose td {
+    @apply border border-slate-200 px-4 py-3 text-slate-600 align-top;
+  }
+
+  /* Task Lists */
+  .prose ul[data-type="taskList"] {
+    @apply list-none p-0;
+  }
+
+  .prose ul[data-type="taskList"] li {
+    @apply flex items-start gap-4 my-2;
+  }
+
+  .prose ul[data-type="taskList"] input[type="checkbox"] {
+    @apply mt-1.5 size-4 rounded border-slate-300 text-primary focus:ring-primary;
+  }
+
+  /* Blockquote Enhancement */
+  .prose blockquote {
+    @apply border-l-4 border-primary bg-primary/5 py-4 px-6 italic text-slate-700 rounded-r-2xl my-8 leading-relaxed font-serif relative;
+    quotes: none;
+  }
+
+  .prose blockquote p:before,
+  .prose blockquote p:after {
+    content: none !important;
+  }
+
+  /* Support for Tiptap Designs in Prose */
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    @apply text-slate-900 font-display font-bold;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    line-height: 1.2;
+  }
+
+  .prose h1 {
+    @apply text-3xl md:text-4xl;
+  }
+
+  .prose h2 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  .prose h3 {
+    @apply text-xl md:text-2xl;
+  }
+
+  .prose h4 {
+    @apply text-lg md:text-xl;
+  }
+
+  .prose p {
+    @apply my-4 leading-relaxed;
+  }
+
+  .prose img {
+    @apply rounded-2xl shadow-lg my-8 mx-auto;
+  }
+
+  .prose a {
+    @apply text-primary font-bold no-underline hover:underline;
+  }
+
+  .prose .material-symbols-outlined {
+    @apply inline-block align-middle leading-none mr-1;
+    font-family: 'Material Symbols Outlined' !important;
+    font-style: normal;
+  }
+
+  /* YouTube / Video Support */
+  .prose iframe {
+    @apply w-full aspect-video rounded-2xl shadow-xl my-8 border-0 bg-slate-100;
+  }
+
+  /* Inline Styles & Specificity Fixes */
+  .prose [style*="color"] {
+    color: unset;
+    /* Allow inline color to override prose defaults */
+  }
+
+  /* Alignment */
+  .prose .text-center,
+  .prose [style*="text-align: center"] {
+    text-align: center;
+  }
+
+  .prose .text-right,
+  .prose [style*="text-align: right"] {
+    text-align: right;
+  }
+
+  .prose .text-justify,
+  .prose [style*="text-align: justify"] {
+    text-align: justify;
+  }
+
+  /* Highlight/Mark */
+  .prose mark {
+    @apply bg-amber-200/50 px-1 rounded-sm text-inherit;
+  }
+
+  /* Underline */
+  .prose u {
+    @apply underline underline-offset-4 decoration-current;
+  }
+
+  /* Link */
+  .prose a {
+    @apply font-bold transition-all text-primary hover:text-primary-dark decoration-primary/20 hover:decoration-primary;
+  }
+
+  /* Horizontal Rule */
+  .prose hr {
+    @apply my-12 border-slate-200 border-dashed;
+  }
+
+  /* Lowlight Theme (Slate-like) */
+  .hljs-comment,
+  .hljs-quote {
+    @apply text-slate-500 italic;
+  }
+
+  .hljs-keyword,
+  .hljs-selector-tag,
+  .hljs-addition {
+    @apply text-sky-400 font-bold;
+  }
+
+  .hljs-number,
+  .hljs-string,
+  .hljs-meta .hljs-meta-string,
+  .hljs-literal,
+  .hljs-doctag,
+  .hljs-regexp {
+    @apply text-emerald-400;
+  }
+
+  .hljs-title,
+  .hljs-section,
+  .hljs-name,
+  .hljs-selector-id,
+  .hljs-selector-class {
+    @apply text-amber-400;
+  }
+
+  .hljs-attribute,
+  .hljs-attr,
+  .hljs-variable,
+  .hljs-template-variable,
+  .hljs-class .hljs-title,
+  .hljs-type {
+    @apply text-orange-400;
+  }
+
+  .hljs-symbol,
+  .hljs-bullet,
+  .hljs-subst,
+  .hljs-meta,
+  .hljs-meta .hljs-keyword,
+  .hljs-selector-attr,
+  .hljs-selector-pseudo,
+  .hljs-link {
+    @apply text-pink-400;
+  }
+
+  .hljs-built_in,
+  .hljs-deletion {
+    @apply text-rose-400;
+  }
+
+  .prose table {
+    @apply w-full border-collapse rounded-xl overflow-hidden my-6 border border-slate-200;
+  }
+
+  .prose th {
+    @apply bg-slate-50 border border-slate-200 px-4 py-3 text-left font-bold text-slate-900;
+  }
+
+  .prose td {
+    @apply border border-slate-200 px-4 py-3 text-slate-600;
+  }
+
+  /* Typography Fonts */
+  .font-lexend {
+    font-family: 'Lexend', sans-serif;
+  }
+
+  .font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .font-lora {
+    font-family: 'Lora', serif;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
