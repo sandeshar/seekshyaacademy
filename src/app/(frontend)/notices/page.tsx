@@ -137,14 +137,12 @@ export default function NoticePage() {
 
     return (
         <main className="relative isolate mx-auto flex w-full max-w-7xl grow flex-col gap-8 overflow-hidden px-4 py-14 sm:px-6 lg:px-8 md:py-20">
-            <div className="pointer-events-none absolute -left-20 -top-24 -z-10 size-72 rounded-full bg-primary/10 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-24 -right-20 -z-10 size-80 rounded-full bg-secondary/10 blur-3xl" />
 
             {pageData?.hero.isVisible && (
-                <section className="overflow-hidden rounded-[2.2rem] border border-outline-variant/30 bg-linear-to-br from-surface-container-low to-surface-container-lowest p-7 shadow-lg sm:p-10">
+                <section className="overflow-hidden rounded-[2.2rem] p-7 shadow-lg sm:p-10">
                     <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
                         <div className="max-w-2xl">
-                            <span className="mb-3 inline-flex items-center rounded-full bg-secondary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-secondary">
+                            <span className="mb-3 inline-flex items-center rounded-full  px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-secondary">
                                 {pageData.hero.badge}
                             </span>
                             <h1 className="font-headline text-3xl font-extrabold tracking-tight text-on-surface md:text-4xl">
@@ -318,7 +316,7 @@ export default function NoticePage() {
                     )}
 
                     {pageData?.supportWidget.isVisible && (
-                        <div className="rounded-2xl border border-primary/20 bg-linear-to-br from-primary/8 to-secondary/8 p-5 shadow-sm">
+                        <div className="rounded-2xl border border-primary/20 bg-surface-container-lowest p-5 shadow-sm">
                             <h3 className="mb-2 font-headline text-lg font-bold text-on-surface">
                                 {pageData.supportWidget.title || "Need Help?"}
                             </h3>

@@ -217,10 +217,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative z-10 mx-auto -mt-10 max-w-7xl px-4 md:px-8">
-        <div className="grid overflow-hidden rounded-[2.5rem] border border-outline-variant/10 bg-surface-container-lowest shadow-xl md:grid-cols-3 md:divide-x md:divide-y-0 divide-y divide-outline-variant/20">
+      <section className="relative z-20 mx-auto -mt-14 mb-10 max-w-7xl px-4 md:px-8">
+        <div className="grid overflow-hidden rounded-4xl border border-outline-variant/20 bg-surface-container-lowest shadow-[0_20px_60px_-24px_rgba(15,23,42,0.45)] md:grid-cols-3 md:divide-x md:divide-y-0 divide-y divide-outline-variant/20">
           {valueProps.map((item) => (
-            <div key={item.label} className="flex items-center gap-6 p-8">
+            <div key={item.label} className="flex items-center gap-6 p-8 md:p-9">
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
                 <span className="material-symbols-outlined text-3xl">{item.icon}</span>
               </div>
@@ -233,7 +233,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="overflow-hidden bg-surface-container-low py-24">
+      <section className="overflow-hidden bg-surface-container-low pb-24 pt-28">
         <div className="mx-auto mb-12 max-w-7xl px-4 text-center md:px-8">
           <h2 className="mb-4 font-headline text-3xl font-extrabold text-on-surface md:text-4xl">Our Success Stories</h2>
           <div className="mx-auto h-1.5 w-24 rounded-full bg-primary" />
