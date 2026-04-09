@@ -172,13 +172,12 @@ export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden bg-background text-on-background">
       <section className="relative flex min-h-[min(100vh,920px)] items-center overflow-hidden pt-10">
-        <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 z-0">
           <img
-            className="h-full w-full object-cover opacity-20"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAih4JvkaSs_na-KDh2YgK39Vj30nh9pM0Z7acomB5Krip_q50L0sM9FNkcxjqpqfBXgoWSHsbz2PoBx5EnLPYYm4728ZUAQZlIjD8kgonPCZxLfzBWrgUFFuWIEqzSo634vjFnnn46iV3nT9y-VRa-kyuK7Ot8OQCe9gQWYy52nVZh7xhBd_6_qk-6FQ0XfkOPgixIdL1nYi-IWf9d4NWS9pRI1IxxxWjxCPUstX0kLytdVOJbEWtcJaALq7Ajr9dxzjJOR8E3rhGE"
-            alt="vibrant modern classroom setting with diverse ambitious students collaborating on laptops"
+            className="h-full w-full object-cover opacity-10"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9FjJqV3LRHmwHcLQe9ItyjofWWaT1o2Jqbe7czDifiOabrAClY5HLFErF0sCTZsWusYNTZAD3tVroFtI8yjfzNNaR6A7po5O5jYZLVgieWTTmu1vtgsIFgiGX95hlD42faxTu05p5NfAYXIjd9mVi1Jzhz44d0gB5Z5__EUFq753howoR8ZshPMD9bVr5G5n6-QBYy5XwLjzD7udmOwwqBaaRxxYyEBlCCj5wN17RugzMg_nrMDCE6fmM1w2Rgi-rxL7P7mPTi06F"
+            alt="vibrant modern classroom setting"
           />
-          <div className="absolute inset-0 bg-linear-to-r from-background via-background/92 to-transparent" />
         </div>
 
         <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-12 px-4 py-16 md:grid-cols-2 md:px-8 lg:py-24">
@@ -217,7 +216,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative z-20 mx-auto -mt-14 mb-10 max-w-7xl px-4 md:px-8">
+      <section className="relative z-20 mx-auto -mt-14 -mb-28 max-w-7xl px-4 md:px-8">
         <div className="grid overflow-hidden rounded-4xl border border-outline-variant/20 bg-surface-container-lowest shadow-[0_20px_60px_-24px_rgba(15,23,42,0.45)] md:grid-cols-3 md:divide-x md:divide-y-0 divide-y divide-outline-variant/20">
           {valueProps.map((item) => (
             <div key={item.label} className="flex items-center gap-6 p-8 md:p-9">
@@ -233,7 +232,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="overflow-hidden bg-surface-container-low pb-24 pt-28">
+      <section className="overflow-hidden bg-surface-container-low pb-24 pt-48">
         <div className="mx-auto mb-12 max-w-7xl px-4 text-center md:px-8">
           <h2 className="mb-4 font-headline text-3xl font-extrabold text-on-surface md:text-4xl">Our Success Stories</h2>
           <div className="mx-auto h-1.5 w-24 rounded-full bg-primary" />

@@ -13,49 +13,54 @@ interface AboutHeroProps {
 }
 
 const AboutHero = ({ data }: AboutHeroProps) => {
-    const opacityValue = data?.overlayOpacity !== undefined ? data.overlayOpacity / 100 : 0.8;
-
     return (
-        <div
-            className="w-full bg-slate-900 overflow-hidden relative bg-cover bg-center bg-no-repeat"
-            style={{
-                backgroundImage: `linear-gradient(rgba(126, 25, 27, ${opacityValue}) 0%, rgba(30, 67, 131, ${opacityValue * 0.9}) 100%), url("${data?.backgroundImage || 'https://images.unsplash.com/photo-1541339907198-e08756ebafe3?q=80&w=2070&auto=format&fit=crop'}")`
-            }}
-        >
-            <div className="relative flex min-h-[500px] flex-col gap-8 items-center justify-center px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center max-w-7xl mx-auto">
-                <div className="flex flex-col gap-6 max-w-3xl relative z-10">
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 text-white text-xs font-semibold uppercase tracking-[0.2em] backdrop-blur-md w-fit mx-auto border border-white/20 shadow-sm">
-                        {data?.badgeText}
-                    </span>
-                    <h1 className="text-white text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl drop-shadow-lg font-lexend">
+        <section className="relative h-[650px] flex items-center overflow-hidden">
+            <div className="absolute inset-0 z-0">
+                <img
+                    className="w-full h-full object-cover opacity-20"
+                    alt="Modern academic library hall"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9FjJqV3LRHmwHcLQe9ItyjofWWaT1o2Jqbe7czDifiOabrAClY5HLFErF0sCTZsWusYNTZAD3tVroFtI8yjfzNNaR6A7po5O5jYZLVgieWTTmu1vtgsIFgiGX95hlD42faxTu05p5NfAYXIjd9mVi1Jzhz44d0gB5Z5__EUFq753howoR8ZshPMD9bVr5G5n6-QBYy5XwLjzD7udmOwwqBaaRxxYyEBlCCj5wN17RugzMg_nrMDCE6fmM1w2Rgi-rxL7P7mPTi06F"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent"></div>
+            </div>
+            <div className="relative z-10 max-w-7xl mx-auto px-8 w-full">
+                <div className="max-w-2xl">
+                    <span className="text-secondary font-headline font-bold tracking-widest text-xs uppercase mb-4 block">{data?.badgeText || "About Us"}</span>
+                    <h1 className="text-6xl md:text-7xl font-headline font-extrabold text-on-surface tracking-tight mb-6">
                         {data?.title}
                     </h1>
-                    <h2 className="text-blue-50/90 text-base font-medium leading-relaxed sm:text-lg max-w-2xl mx-auto font-sans opacity-90">
+                    <p className="text-lg text-on-surface-variant leading-relaxed max-w-xl">
                         {data?.description}
-                    </h2>
-                </div>
-                <div className="flex flex-wrap items-center justify-center gap-5 mt-4">
-                    {data?.primaryButton?.text && (
-                        <a
-                            href={data.primaryButton.link}
-                            className="flex min-w-[180px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-8 bg-white text-primary text-base font-semibold leading-normal hover:bg-gray-100 transition-all shadow-xl hover:shadow-white/10 gap-2 group"
-                        >
-                            {data.primaryButton.icon && <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">{data.primaryButton.icon}</span>}
-                            <span>{data.primaryButton.text}</span>
-                        </a>
-                    )}
-                    {data?.secondaryButton?.text && (
-                        <a
-                            href={data.secondaryButton.link}
-                            className="flex min-w-[180px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-8 bg-transparent border-2 border-white/30 text-white text-base font-semibold leading-normal hover:bg-white/10 hover:border-white transition-all gap-2"
-                        >
-                            {data.secondaryButton.icon && <span className="material-symbols-outlined">{data.secondaryButton.icon}</span>}
-                            <span>{data.secondaryButton.text}</span>
-                        </a>
-                    )}
+                    </p>
+                    <div className="flex flex-wrap gap-4 pt-6">
+                        {data?.primaryButton?.text && (
+                            <a
+                                href={data.primaryButton.link}
+                                className="inline-flex items-center justify-center rounded-full bg-primary px-8 py-3.5 text-base font-bold text-white shadow-xl shadow-primary/20 transition-all hover:scale-105 hover:bg-primary/90 gap-2 group"
+                            >
+                                {data.primaryButton.text}
+                                {data.primaryButton.icon && (
+                                    <span className="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1">
+                                        {data.primaryButton.icon}
+                                    </span>
+                                )}
+                            </a>
+                        )}
+                        {data?.secondaryButton?.text && (
+                            <a
+                                href={data.secondaryButton.link}
+                                className="inline-flex items-center justify-center rounded-full border-2 border-outline-variant px-8 py-3.5 text-base font-bold text-primary transition-all hover:bg-surface-container-low gap-2 group"
+                            >
+                                <span className="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1">
+                                    {data.secondaryButton.icon || "explore"}
+                                </span>
+                                {data.secondaryButton.text}
+                            </a>
+                        )}
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 
