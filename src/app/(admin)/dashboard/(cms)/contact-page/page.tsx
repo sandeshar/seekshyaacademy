@@ -196,7 +196,7 @@ export default function ContactPageCMS() {
                                                 onChange={(e) => setData({ ...data, contactInfo: { ...data.contactInfo, email: { ...data.contactInfo.email, addresses: e.target.value.split('\n') } } })}
                                                 className={inputClass + " resize-y"}
                                                 rows={2}
-                                                placeholder="info@lakshyaca.com&#10;admissions@lakshyaca.com"
+                                                placeholder="info@seekshyaacademy.com&#10;admissions@seekshyaacademy.com"
                                             />
                                         </div>
                                     </div>

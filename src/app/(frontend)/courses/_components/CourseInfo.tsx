@@ -68,7 +68,7 @@ const CourseInfo = () => {
                         </div>
                     </div>
                     <div className="mt-8 pt-6 border-t border-slate-100">
-                        <p className="italic text-slate-500 text-sm">"The faculty at Lakshya made complex accounting concepts simple. Best decision for my foundation prep!"</p>
+                        <p className="italic text-slate-500 text-sm">"The faculty at Seekshya made complex accounting concepts simple. Best decision for my foundation prep!"</p>
                         <div className="flex items-center gap-3 mt-3">
                             <div className="size-8 rounded-full bg-slate-200 overflow-hidden">
                                 <img

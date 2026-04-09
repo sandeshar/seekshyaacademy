@@ -58,7 +58,7 @@ const FeaturedArticle = async ({ selectedCategory }: { selectedCategory?: string
                             </p>
                         </div>
                         <div className="flex items-center gap-4 text-xs text-slate-500 font-medium">
-                            <span>By {first?.author || 'Lakshya Team'}</span>
+                            <span>By {first?.author || 'Seekshya Team'}</span>
                             <span className="w-1 h-1 rounded-full bg-slate-300"></span>
                             <span>{first?.createdAt ? new Date(first.createdAt).toLocaleDateString() : ''}</span>
                             <span className="w-1 h-1 rounded-full bg-slate-300"></span>

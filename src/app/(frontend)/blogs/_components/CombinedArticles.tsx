@@ -101,7 +101,7 @@ const CombinedArticles = async ({ selectedCategory, selectedSubcategory, searchQ
                                                 <div className="bg-primary w-full h-full flex items-center justify-center text-white text-[10px]">LCA</div>
                                             )}
                                         </div>
-                                        <span className="text-xs font-medium text-gray-600">By {article.author || 'Lakshya Team'}</span>
+                                        <span className="text-xs font-medium text-gray-600">By {article.author || 'Seekshya Team'}</span>
                                     </div>
                                     <CardShare title={article.title} url={apiUrl(`/blogs/${article.slug || article._id}`)} />
                                 </div>

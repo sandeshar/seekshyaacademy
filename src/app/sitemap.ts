@@ -4,7 +4,7 @@ import { getNotices } from '@/actions/notices';
 import { getCourseCategories, getCourseSubcategories } from '@/actions/categories';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://lakshyaca.com';
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://seekshyaacademy.com';
 
     // Static routes
     const staticRoutes = [

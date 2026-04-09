@@ -62,7 +62,7 @@ const ContactPageSchema: Schema = new Schema({
         },
         email: {
             title: { type: String, default: "Email Us" },
-            addresses: { type: [String], default: ["info@lakshyaca.com", "admissions@lakshyaca.com"] }
+            addresses: { type: [String], default: ["info@seekshyaacademy.com", "admissions@seekshyaacademy.com"] }
         },
         map: {
             title: { type: String, default: "Find us on Map" },

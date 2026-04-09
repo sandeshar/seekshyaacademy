@@ -66,7 +66,7 @@ export default function CMSDirectory() {
                     CMS <span className="text-slate-400">Master</span>
                 </h1>
                 <p className="text-lg text-slate-500 max-w-2xl font-medium">
-                    Architecture and content management for Lakshya's digital presence. Professional tools for professional content.
+                    Architecture and content management for Seekshya's digital presence. Professional tools for professional content.
                 </p>
             </header>
 
@@ -113,7 +113,7 @@ export default function CMSDirectory() {
 
             <footer className="mt-32 pt-12 border-top border-slate-100">
                 <p className="text-[10px] font-black text-slate-300 uppercase tracking-[0.4em] text-center">
-                    Lakshya CMS Architecture 2024
+                    Seekshya CMS Architecture 2024
                 </p>
             </footer>
         </div>

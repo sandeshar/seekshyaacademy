@@ -174,7 +174,7 @@ const HomepageSchema: Schema = new Schema({
     },
     cta: {
         isVisible: { type: Boolean, default: true },
-        title: { type: String, default: "Start Your CA Journey with Lakshya" },
+        title: { type: String, default: "Start Your CA Journey with Seekshya" },
         description: { type: String, default: "Join the premier institute dedicated to your success in the ICAN examinations. Your future as a Chartered Accountant begins here." },
         primaryButton: {
             text: { type: String, default: "Register Online Today" },

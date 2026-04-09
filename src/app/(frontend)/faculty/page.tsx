@@ -60,7 +60,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ c
     }
 
     return (
-        <main className="flex min-h-screen flex-col bg-slate-50">
+        <main className="flex min-h-screen flex-col bg-background">
             {facultyPageData?.hero?.isVisible !== false && (
                 <FacultyHero data={facultyPageData?.hero} />
             )}

@@ -76,7 +76,7 @@ const NoticesPageSchema: Schema = new Schema({
         title: { type: String, default: "Need Help?" },
         description: { type: String, default: "If you have any queries regarding notices or admissions, feel free to contact administration." },
         phone: { type: String, default: "+977-1-4XXXXXX" },
-        email: { type: String, default: "info@lakshyaca.com" },
+        email: { type: String, default: "info@seekshyaacademy.com" },
     },
     seo: {
         title: { type: String, default: "Notices & Updates | Seekshya Academy" },

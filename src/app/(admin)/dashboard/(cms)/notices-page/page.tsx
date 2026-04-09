@@ -238,7 +238,7 @@ export default function NoticesPageCMS() {
                                             value={data.supportWidget.email}
                                             onChange={(e) => setData({ ...data, supportWidget: { ...data.supportWidget, email: e.target.value } })}
                                             className={inputClass}
-                                            placeholder="info@lakshyaca.com"
+                                            placeholder="info@seekshyaacademy.com"
                                         />
                                     </div>
                                 </div>

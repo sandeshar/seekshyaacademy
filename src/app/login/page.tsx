@@ -16,7 +16,7 @@ export default function LoginPage() {
     const [isSeeding, setIsSeeding] = useState(false);
     const [seedData, setSeedData] = useState({
         name: "Admin",
-        email: "admin@lakshya.com",
+        email: "admin@seekshyaacademy.com",
         password: "Admin@123"
     });
     const router = useRouter();

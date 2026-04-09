@@ -25,30 +25,32 @@ const FacultyHero = ({ data }: FacultyHeroProps) => {
     if (!data) return null;
 
     return (
-        <section className="relative w-full bg-white py-16 md:py-24">
+        <section className="relative w-full overflow-hidden bg-linear-to-b from-surface-container-low to-background py-16 md:py-24">
+            <div className="pointer-events-none absolute -left-20 -top-20 size-64 rounded-full bg-primary/8 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-24 -right-16 size-72 rounded-full bg-secondary/8 blur-3xl" />
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col-reverse lg:flex-row gap-10 lg:gap-16 items-center">
                     {/* Text Content */}
                     <div className="flex flex-col gap-6 lg:w-1/2">
                         <div className="flex flex-col gap-3">
-                            <span className="inline-block w-fit rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary">
+                            <span className="inline-block w-fit rounded-full bg-secondary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-secondary">
                                 {data.badgeText}
                             </span>
-                            <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+                            <h1 className="font-headline text-4xl font-extrabold leading-tight tracking-tight text-on-surface sm:text-5xl lg:text-6xl">
                                 {data.title}
                             </h1>
-                            <p className="text-lg text-slate-600">
+                            <p className="text-lg text-on-surface-variant">
                                 {data.description}
                             </p>
                         </div>
                         <div className="flex flex-wrap gap-4 pt-2">
-                            <Link href={data.primaryButton.link} className="rounded-lg bg-primary px-6 py-3 text-base font-bold text-white shadow-lg hover:bg-primary-dark transition-colors flex items-center gap-2 group">
+                            <Link href={data.primaryButton.link} className="rounded-full bg-primary px-7 py-3 text-base font-semibold text-white shadow-lg shadow-primary/20 hover:bg-primary-dark transition-colors flex items-center gap-2 group">
                                 {data.primaryButton.text}
                                 {data.primaryButton.icon && (
                                     <span className="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1">{data.primaryButton.icon}</span>
                                 )}
                             </Link>
-                            <Link href={data.secondaryButton.link} className="flex items-center gap-2 rounded-lg border border-slate-300 px-6 py-3 text-base font-bold text-slate-700 hover:bg-slate-50 transition-colors group">
+                            <Link href={data.secondaryButton.link} className="flex items-center gap-2 rounded-full border border-outline-variant bg-surface-container-lowest px-7 py-3 text-base font-semibold text-on-surface hover:bg-surface-container-low transition-colors group">
                                 <span className="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1">{data.secondaryButton.icon || 'play_circle'}</span>
                                 {data.secondaryButton.text}
                             </Link>
@@ -56,7 +58,7 @@ const FacultyHero = ({ data }: FacultyHeroProps) => {
                     </div>
                     {/* Image */}
                     <div className="w-full lg:w-1/2">
-                        <div className="relative aspect-video w-full overflow-hidden rounded-2xl shadow-xl lg:aspect-4/3">
+                        <div className="relative aspect-video w-full overflow-hidden rounded-[2rem] border border-outline-variant/20 shadow-2xl lg:aspect-4/3">
                             <div
                                 className="absolute inset-0 bg-primary z-10"
                                 style={{ opacity: (data.overlayOpacity !== undefined ? data.overlayOpacity : 20) / 100 }}

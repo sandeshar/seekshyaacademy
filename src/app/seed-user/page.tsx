@@ -10,7 +10,7 @@ export default function SeedUserPage() {
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         name: "Admin",
-        email: "admin@lakshya.com",
+        email: "admin@seekshyaacademy.com",
         password: "Admin@123",
         role: "admin"
     });

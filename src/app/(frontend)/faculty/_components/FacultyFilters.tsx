@@ -44,16 +44,16 @@ const FacultyFilters = ({
         : [];
 
     return (
-        <section className="sticky top-16 z-40 border-y border-slate-200 bg-white shadow-sm transition-all duration-300">
+        <section className="sticky top-16 z-40 border-y border-outline-variant/30 bg-surface-container-lowest/95 backdrop-blur shadow-sm transition-all duration-300">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-4 py-4">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     {/* Chips for Categories */}
                     <div className="no-scrollbar flex gap-2 overflow-x-auto pb-2 sm:pb-0">
                         <Link
                             href="/faculty"
-                            className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-colors ${!selectedCategory
+                            className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold transition-colors ${!selectedCategory
                                 ? 'bg-primary text-white shadow-sm'
-                                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                                : 'bg-surface-container-low text-on-surface hover:bg-surface-container'
                                 }`}
                         >
                             All Faculty
@@ -66,9 +66,9 @@ const FacultyFilters = ({
                                 <Link
                                     key={cat._id}
                                     href={`/faculty?${params.toString()}`}
-                                    className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-colors ${selectedCategory === cat.slug
+                                    className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold transition-colors ${selectedCategory === cat.slug
                                         ? 'bg-primary text-white shadow-sm'
-                                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                                        : 'bg-surface-container-low text-on-surface hover:bg-surface-container'
                                         }`}
                                 >
                                     {cat.name}
@@ -82,7 +82,7 @@ const FacultyFilters = ({
                             <span className="material-symbols-outlined text-slate-400">search</span>
                         </div>
                         <input
-                            className="block w-full rounded-lg border-0 bg-slate-100 py-2.5 pl-10 text-slate-900 ring-1 ring-inset ring-slate-300 placeholder:text-slate-500 focus:ring-2 focus:ring-inset focus:ring-primary outline-none"
+                            className="block w-full rounded-xl border-0 bg-surface-container-low py-2.5 pl-10 text-on-surface ring-1 ring-inset ring-outline-variant placeholder:text-on-surface-variant focus:ring-2 focus:ring-inset focus:ring-primary outline-none"
                             placeholder="Search by name or subject"
                             type="search"
                             value={searchQuery}
@@ -93,12 +93,12 @@ const FacultyFilters = ({
 
                 {/* Subcategories if category selected */}
                 {displayedSubcategories && displayedSubcategories.length > 0 && (
-                    <div className="no-scrollbar flex gap-2 overflow-x-auto border-t border-slate-100 pt-3">
+                    <div className="no-scrollbar flex gap-2 overflow-x-auto border-t border-outline-variant/20 pt-3">
                         <Link
                             href={`/faculty?category=${selectedCategory}`}
                             className={`whitespace-nowrap rounded-full px-4 py-1.5 text-xs font-semibold transition-colors ${!selectedSubcategory
-                                ? 'bg-slate-700 text-white'
-                                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                                ? 'bg-secondary text-white'
+                                : 'bg-surface-container-low text-on-surface-variant hover:bg-surface-container'
                                 }`}
                         >
                             All {categories?.find(c => c.slug === selectedCategory)?.name}
@@ -111,8 +111,8 @@ const FacultyFilters = ({
                                     key={sub._id}
                                     href={`/faculty?${params.toString()}`}
                                     className={`whitespace-nowrap rounded-full px-4 py-1.5 text-xs font-semibold transition-colors ${selectedSubcategory === sub.slug
-                                        ? 'bg-slate-700 text-white'
-                                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                                        ? 'bg-secondary text-white'
+                                        : 'bg-surface-container-low text-on-surface-variant hover:bg-surface-container'
                                         }`}
                                 >
                                     {sub.name}

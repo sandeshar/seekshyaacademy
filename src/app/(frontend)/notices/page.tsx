@@ -12,7 +12,7 @@ interface INotice {
     title: string;
     slug: string;
     description: string;
-    categoryId: any;
+    categoryId: { _id?: string; name?: string; slug?: string } | string | null;
     tag?: string;
     date: string;
     documents?: {
@@ -101,7 +101,7 @@ export default function NoticePage() {
         const fetchNotices = async () => {
             setIsLoading(true);
             try {
-                const filter: any = { status: 'active' };
+                const filter: Record<string, string> = { status: 'active' };
                 if (selectedCategoryId !== "all") {
                     filter.categoryId = selectedCategoryId;
                 }
@@ -120,6 +120,13 @@ export default function NoticePage() {
         return html.replace(/<[^>]*>?/gm, '');
     };
 
+    const getCategoryName = (categoryId: INotice["categoryId"]) => {
+        if (categoryId && typeof categoryId === "object" && "name" in categoryId) {
+            return String((categoryId as { name?: string }).name || "");
+        }
+        return "";
+    };
+
     const filteredNotices = notices
         .filter(notice =>
             notice.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -129,72 +136,71 @@ export default function NoticePage() {
         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
     return (
-        <main className="grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-            {/* Page Header */}
+        <main className="relative isolate mx-auto flex w-full max-w-7xl grow flex-col gap-8 overflow-hidden px-4 py-14 sm:px-6 lg:px-8 md:py-20">
+            <div className="pointer-events-none absolute -left-20 -top-24 -z-10 size-72 rounded-full bg-primary/10 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-24 -right-20 -z-10 size-80 rounded-full bg-secondary/10 blur-3xl" />
+
             {pageData?.hero.isVisible && (
-                <div className="mb-10">
-                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <section className="overflow-hidden rounded-[2.2rem] border border-outline-variant/30 bg-linear-to-br from-surface-container-low to-surface-container-lowest p-7 shadow-lg sm:p-10">
+                    <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
                         <div className="max-w-2xl">
-                            <div className="flex items-center gap-2 mb-2">
-                                <span className="px-2 py-0.5 rounded text-xs font-bold bg-primary/10 text-primary uppercase tracking-wider">{pageData.hero.badge}</span>
-                            </div>
-                            <h2 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900 mb-3">{pageData.hero.title}</h2>
-                            <p className="text-slate-500 text-lg leading-relaxed">
+                            <span className="mb-3 inline-flex items-center rounded-full bg-secondary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-secondary">
+                                {pageData.hero.badge}
+                            </span>
+                            <h1 className="font-headline text-3xl font-extrabold tracking-tight text-on-surface md:text-4xl">
+                                {pageData.hero.title}
+                            </h1>
+                            <p className="mt-3 text-base leading-relaxed text-on-surface-variant md:text-lg">
                                 {pageData.hero.subtitle}
                             </p>
                         </div>
-                        {/* Date Widget */}
-                        <div className="hidden md:flex items-center gap-3 bg-white p-2 pr-4 rounded-xl border border-slate-200 shadow-sm">
-                            <div className="h-10 w-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+
+                        <div className="inline-flex items-center gap-3 rounded-2xl border border-outline-variant/30 bg-white/70 px-3 py-2 shadow-sm backdrop-blur-sm">
+                            <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
                                 <span className="material-symbols-outlined">calendar_month</span>
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-xs font-medium text-slate-500">Today's Date</span>
-                                <span className="text-sm font-bold text-slate-900">
+                                <span className="text-xs font-medium text-on-surface-variant">Date</span>
+                                <span className="text-sm font-semibold text-on-surface">
                                     {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                                 </span>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
             )}
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                {/* Left Column: Filters & Notices List */}
-                <div className="lg:col-span-8 flex flex-col gap-6">
-                    {/* Search & Filters Toolbar */}
-                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm sticky top-16 z-40 transition-all duration-300">
-                        <div className="flex flex-col sm:flex-row gap-4">
-                            {/* Search */}
-                            <div className="relative flex-1">
-                                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 material-symbols-outlined">search</span>
-                                <input
-                                    className="w-full h-10 pl-10 pr-4 rounded-lg bg-background-light border-none text-sm text-slate-900 focus:ring-2 focus:ring-primary placeholder:text-slate-500 transition-all"
-                                    placeholder={pageData?.search.placeholder || "Search notices..."}
-                                    type="text"
-                                    value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
-                                />
-                            </div>
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
+                <section className="lg:col-span-8">
+                    <div className="sticky top-16 z-40 rounded-2xl border border-outline-variant/30 bg-surface-container-lowest/95 p-4 shadow-sm backdrop-blur">
+                        <div className="relative">
+                            <span className="material-symbols-outlined pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+                            <input
+                                className="h-11 w-full rounded-xl border-0 bg-surface-container-low pl-10 pr-4 text-sm text-on-surface ring-1 ring-inset ring-outline-variant placeholder:text-on-surface-variant focus:ring-2 focus:ring-primary outline-none"
+                                placeholder={pageData?.search.placeholder || "Search notices..."}
+                                type="text"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
                         </div>
-                        {/* Categories Chips */}
-                        <div className="flex gap-2 mt-4 overflow-x-auto no-scrollbar pb-1 text-nowrap">
+
+                        <div className="no-scrollbar mt-4 flex gap-2 overflow-x-auto pb-1 text-nowrap">
                             <Link
                                 href="/notices"
-                                className={`shrink-0 h-8 px-4 rounded-full text-sm font-medium transition-all flex items-center justify-center ${selectedCategoryId === "all"
-                                    ? "bg-primary text-white hover:shadow-md"
-                                    : "bg-background-light hover:bg-slate-200 text-slate-500 border border-transparent hover:border-slate-300"
+                                className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-colors ${selectedCategoryId === "all"
+                                    ? "bg-primary text-white shadow-sm"
+                                    : "bg-surface-container-low text-on-surface hover:bg-surface-container"
                                     }`}
                             >
                                 {pageData?.search.allNoticesText || "All Notices"}
                             </Link>
-                            {categories.map(cat => (
+                            {categories.map((cat) => (
                                 <Link
                                     key={cat._id}
                                     href={`/notices?category=${cat.slug}`}
-                                    className={`shrink-0 h-8 px-4 rounded-full text-sm font-medium transition-all flex items-center justify-center ${selectedCategoryId === cat._id
-                                        ? "bg-primary text-white hover:shadow-md"
-                                        : "bg-background-light hover:bg-slate-200 text-slate-500 border border-transparent hover:border-slate-300"
+                                    className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-colors ${selectedCategoryId === cat._id
+                                        ? "bg-primary text-white shadow-sm"
+                                        : "bg-surface-container-low text-on-surface hover:bg-surface-container"
                                         }`}
                                 >
                                     {cat.name}
@@ -205,42 +211,61 @@ export default function NoticePage() {
 
                     {isLoading ? (
                         <div className="py-20 text-center">
-                            <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary mx-auto"></div>
+                            <div className="mx-auto h-10 w-10 animate-spin rounded-full border-b-2 border-primary" />
                         </div>
                     ) : (
-                        <div className="flex flex-col gap-4">
-                            {filteredNotices.map(notice => (
-                                <div key={notice._id} className="bg-white rounded-xl p-5 border border-slate-200 hover:shadow-md transition-shadow group">
-                                    <div className="flex items-start gap-4">
-                                        {/* Date Box */}
-                                        <div className="hidden sm:flex flex-col items-center justify-center w-14 h-14 rounded-lg bg-background-light border border-slate-200 shrink-0">
-                                            <span className="text-xs font-semibold text-slate-500 uppercase">
+                        <div className="mt-6 flex flex-col gap-4">
+                            {filteredNotices.map((notice) => (
+                                <article key={notice._id} className="group relative overflow-hidden rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
+                                    <div className="absolute left-0 top-0 h-full w-1.5 bg-linear-to-b from-primary via-primary to-secondary" />
+
+                                    <div className="flex items-start gap-4 pl-2">
+                                        <div className="hidden w-16 shrink-0 flex-col items-center justify-center rounded-xl border border-outline-variant/30 bg-surface-container-low py-2 sm:flex">
+                                            <span className="text-[11px] font-semibold uppercase tracking-wider text-on-surface-variant">
                                                 {new Date(notice.date).toLocaleDateString('en-US', { month: 'short' })}
                                             </span>
-                                            <span className="text-xl font-bold text-slate-900">
+                                            <span className="text-2xl font-bold text-on-surface">
                                                 {new Date(notice.date).getDate()}
                                             </span>
                                         </div>
-                                        {/* Content */}
-                                        <div className="flex-1 min-w-0">
-                                            <div className="flex flex-wrap items-center gap-2 mb-1">
+
+                                        <div className="min-w-0 flex-1">
+                                            <div className="mb-2 flex flex-wrap items-center gap-2">
                                                 {notice.tag && (
-                                                    <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-secondary/10 text-secondary uppercase tracking-wider">
+                                                    <span className="inline-flex items-center rounded-full bg-secondary/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-secondary">
                                                         {notice.tag}
                                                     </span>
                                                 )}
-                                                <span className="text-xs text-slate-500 font-medium">
-                                                    {typeof notice.categoryId === 'object' && notice.categoryId !== null ? (notice.categoryId as any).name : ''}
+                                                {getCategoryName(notice.categoryId) && (
+                                                    <span className="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-primary">
+                                                        {getCategoryName(notice.categoryId)}
+                                                    </span>
+                                                )}
+                                                <span className="sm:hidden text-xs font-semibold text-on-surface-variant">
+                                                    {new Date(notice.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                                                 </span>
                                             </div>
+
                                             <Link href={`/notices/${notice.slug}`}>
-                                                <h3 className="text-base font-bold text-slate-900 mb-1 group-hover:text-primary transition-colors">{notice.title}</h3>
+                                                <h2 className="mb-2 font-headline text-lg font-bold text-on-surface transition-colors group-hover:text-primary md:text-xl">
+                                                    {notice.title}
+                                                </h2>
                                             </Link>
-                                            <p className="text-sm text-slate-500 line-clamp-2 mb-3 leading-relaxed">{stripHtml(notice.description)}</p>
+
+                                            <p className="mb-4 line-clamp-2 text-sm leading-relaxed text-on-surface-variant md:text-[15px]">
+                                                {stripHtml(notice.description)}
+                                            </p>
+
                                             {notice.documents && notice.documents.length > 0 && (
-                                                <div className="flex flex-wrap items-center gap-4">
+                                                <div className="flex flex-wrap items-center gap-3">
                                                     {notice.documents.slice(0, 2).map((doc, i) => (
-                                                        <a key={i} href={doc.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs font-bold text-primary hover:text-primary-dark transition-colors uppercase tracking-wide">
+                                                        <a
+                                                            key={i}
+                                                            href={doc.url}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="inline-flex items-center gap-1.5 rounded-full bg-surface-container-low px-3 py-1.5 text-xs font-semibold text-primary transition-colors hover:bg-primary/10"
+                                                        >
                                                             <span className="material-symbols-outlined text-base">
                                                                 {doc.url.includes('pdf') ? 'download' : 'open_in_new'}
                                                             </span>
@@ -248,66 +273,71 @@ export default function NoticePage() {
                                                         </a>
                                                     ))}
                                                     {notice.documents.length > 2 && (
-                                                        <span className="text-xs text-slate-400 font-bold">
+                                                        <span className="text-xs font-semibold text-on-surface-variant">
                                                             +{notice.documents.length - 2} more
                                                         </span>
                                                     )}
                                                 </div>
                                             )}
                                         </div>
-                                        {/* Mobile Date */}
-                                        <div className="sm:hidden text-xs text-slate-500 font-bold">
-                                            {new Date(notice.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                                        </div>
                                     </div>
-                                </div>
+                                </article>
                             ))}
                         </div>
                     )}
 
-                    {filteredNotices.length === 0 && (
-                        <div className="py-20 text-center text-slate-400">
-                            <span className="material-symbols-outlined text-6xl">search_off</span>
+                    {!isLoading && filteredNotices.length === 0 && (
+                        <div className="mt-6 flex flex-col items-center rounded-2xl border border-dashed border-outline-variant/40 bg-surface-container-low py-16 text-center text-on-surface-variant">
+                            <span className="material-symbols-outlined text-6xl text-primary/50">search_off</span>
                             <p className="mt-2 font-medium">No notices found matching your criteria.</p>
                         </div>
                     )}
-                </div>
+                </section>
 
-                {/* Right Column: Sidebar Widgets */}
-                <div className="lg:col-span-4 flex flex-col gap-6">
-                    {/* Quick Links */}
+                <aside className="flex flex-col gap-6 lg:col-span-4">
                     {pageData?.quickLinksWidget.isVisible && (
-                        <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-                            <h3 className="text-base font-bold text-slate-900 mb-4 flex items-center gap-2">
-                                <span className="material-symbols-outlined text-primary">link</span> {pageData.quickLinksWidget.title || "Quick Links"}
+                        <div className="rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-5 shadow-sm">
+                            <h3 className="mb-4 flex items-center gap-2 font-headline text-lg font-bold text-on-surface">
+                                <span className="material-symbols-outlined text-primary">link</span>
+                                {pageData.quickLinksWidget.title || "Quick Links"}
                             </h3>
-                            <div className="flex flex-col gap-3">
+                            <div className="flex flex-col gap-2.5">
                                 {pageData.quickLinksWidget.links?.map((link, index) => (
-                                    <a key={index} className="flex items-center justify-between p-3 rounded-lg bg-background-light hover:bg-slate-100 transition-colors group" href={link.url} target={link.external ? "_blank" : "_self"}>
-                                        <span className="text-sm font-medium text-slate-900">{link.text}</span>
-                                        <span className="material-symbols-outlined text-sm text-slate-500 group-hover:text-primary transition-colors">{link.icon}</span>
+                                    <a
+                                        key={index}
+                                        className="group flex items-center justify-between rounded-xl border border-transparent bg-surface-container-low px-3.5 py-3 transition-colors hover:border-outline-variant/40 hover:bg-surface-container"
+                                        href={link.url}
+                                        target={link.external ? "_blank" : "_self"}
+                                    >
+                                        <span className="text-sm font-medium text-on-surface">{link.text}</span>
+                                        <span className="material-symbols-outlined text-sm text-on-surface-variant transition-colors group-hover:text-primary">{link.icon}</span>
                                     </a>
                                 ))}
                             </div>
                         </div>
                     )}
 
-                    {/* Support Widget */}
                     {pageData?.supportWidget.isVisible && (
-                        <div className="bg-primary/5 rounded-xl border border-primary/10 p-5">
-                            <h3 className="text-base font-bold text-slate-900 mb-2 font-display">{pageData.supportWidget.title || "Need Help?"}</h3>
-                            <p className="text-sm text-slate-600 mb-4 leading-relaxed">{pageData.supportWidget.description || "If you have any queries regarding notices or admissions, feel free to contact administration."}</p>
-                            <div className="flex flex-col gap-2">
-                                <div className="flex items-center gap-2 text-sm text-slate-900 font-bold">
-                                    <span className="material-symbols-outlined text-primary text-xl">call</span> {pageData.supportWidget.phone || "+977-1-4XXXXXX"}
+                        <div className="rounded-2xl border border-primary/20 bg-linear-to-br from-primary/8 to-secondary/8 p-5 shadow-sm">
+                            <h3 className="mb-2 font-headline text-lg font-bold text-on-surface">
+                                {pageData.supportWidget.title || "Need Help?"}
+                            </h3>
+                            <p className="mb-4 text-sm leading-relaxed text-on-surface-variant">
+                                {pageData.supportWidget.description || "If you have any queries regarding notices or admissions, feel free to contact administration."}
+                            </p>
+                            <div className="flex flex-col gap-2.5">
+                                <div className="flex items-center gap-2 text-sm font-semibold text-on-surface">
+                                    <span className="material-symbols-outlined text-primary">call</span>
+                                    {pageData.supportWidget.phone || "+977-1-4XXXXXX"}
                                 </div>
-                                <div className="flex items-center gap-2 text-sm text-slate-900 font-bold">
-                                    <span className="material-symbols-outlined text-primary text-xl">mail</span> {pageData.supportWidget.email || "info@lakshyaca.com"}
+                                <div className="flex items-center gap-2 text-sm font-semibold text-on-surface">
+                                    <span className="material-symbols-outlined text-primary">mail</span>
+                                    {pageData.supportWidget.email || "info@seekshyaacademy.com"}
                                 </div>
                             </div>
                         </div>
                     )}
-                </div>
+                </aside>
             </div>
         </main>
     );

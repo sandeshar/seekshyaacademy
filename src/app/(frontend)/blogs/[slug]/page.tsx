@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         if (!article || !article._id || article.status !== 'published') return { title: 'Learning Hub' };
 
         const title = article.seo?.title || article.title;
-        const description = article.seo?.description || article.excerpt || 'Insights and articles from Lakshya Academy.';
+        const description = article.seo?.description || article.excerpt || 'Insights and articles from Seekshya Academy.';
 
         return {
             title,
@@ -131,7 +131,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                                         <h1 className="text-3xl md:text-5xl font-black text-white mt-4 leading-tight max-w-3xl">{article.title}</h1>
                                         {article.excerpt && <p className="text-white/90 mt-3 max-w-2xl">{article.excerpt}</p>}
                                         <div className="mt-4 flex items-center gap-3 text-white/90 text-sm">
-                                            <span>By {article.author || 'Lakshya Team'}</span>
+                                            <span>By {article.author || 'Seekshya Team'}</span>
                                             <span className="mx-2">•</span>
                                             <span>{typeof article.categoryId === 'object' && article.categoryId !== null && 'name' in article.categoryId ? (article.categoryId as any).name : 'Uncategorized'}</span>
                                             <span className="mx-2">•</span>
@@ -144,7 +144,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                             ) : (
                                 <div className="px-6 py-6 sm:px-10">
                                     <h1 className="text-3xl md:text-5xl font-black leading-tight">{article.title}</h1>
-                                    <p className="text-sm text-gray-500 mt-2">By {article.author || 'Lakshya Team'} • {article.createdAt ? new Date(article.createdAt).toLocaleDateString() : ''} • {readTime} min read</p>
+                                    <p className="text-sm text-gray-500 mt-2">By {article.author || 'Seekshya Team'} • {article.createdAt ? new Date(article.createdAt).toLocaleDateString() : ''} • {readTime} min read</p>
                                     {article.excerpt && <p className="mt-4 text-gray-600">{article.excerpt}</p>}
                                 </div>
                             )}
@@ -198,7 +198,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                                                         <div className="w-7 h-7 bg-secondary/10 rounded-full flex items-center justify-center">
                                                             <span className="material-symbols-outlined text-secondary text-[16px]">person</span>
                                                         </div>
-                                                        <span className="text-xs font-bold text-slate-700">{rel.author || 'Lakshya Team'}</span>
+                                                        <span className="text-xs font-bold text-slate-700">{rel.author || 'Seekshya Team'}</span>
                                                     </div>
                                                     <span className="text-[11px] text-gray-400">{rel.createdAt ? new Date(rel.createdAt).toLocaleDateString() : ''}</span>
                                                 </div>
