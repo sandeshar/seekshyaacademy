@@ -24,13 +24,13 @@ const AboutHero = ({ data }: AboutHeroProps) => {
         >
             <div className="relative flex min-h-[500px] flex-col gap-8 items-center justify-center px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center max-w-7xl mx-auto">
                 <div className="flex flex-col gap-6 max-w-3xl relative z-10">
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 text-white text-xs font-bold uppercase tracking-[0.2em] backdrop-blur-md w-fit mx-auto border border-white/20 shadow-sm">
+                    <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 text-white text-xs font-semibold uppercase tracking-[0.2em] backdrop-blur-md w-fit mx-auto border border-white/20 shadow-sm">
                         {data?.badgeText}
                     </span>
-                    <h1 className="text-white text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl drop-shadow-lg font-lexend">
+                    <h1 className="text-white text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl drop-shadow-lg font-lexend">
                         {data?.title}
                     </h1>
-                    <h2 className="text-blue-50/90 text-base font-normal leading-relaxed sm:text-lg max-w-2xl mx-auto font-sans opacity-90">
+                    <h2 className="text-blue-50/90 text-base font-medium leading-relaxed sm:text-lg max-w-2xl mx-auto font-sans opacity-90">
                         {data?.description}
                     </h2>
                 </div>
@@ -38,7 +38,7 @@ const AboutHero = ({ data }: AboutHeroProps) => {
                     {data?.primaryButton?.text && (
                         <a
                             href={data.primaryButton.link}
-                            className="flex min-w-[180px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-8 bg-white text-primary text-base font-bold leading-normal hover:bg-gray-100 transition-all shadow-xl hover:shadow-white/10 gap-2 group"
+                            className="flex min-w-[180px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-8 bg-white text-primary text-base font-semibold leading-normal hover:bg-gray-100 transition-all shadow-xl hover:shadow-white/10 gap-2 group"
                         >
                             {data.primaryButton.icon && <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">{data.primaryButton.icon}</span>}
                             <span>{data.primaryButton.text}</span>
@@ -47,7 +47,7 @@ const AboutHero = ({ data }: AboutHeroProps) => {
                     {data?.secondaryButton?.text && (
                         <a
                             href={data.secondaryButton.link}
-                            className="flex min-w-[180px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-8 bg-transparent border-2 border-white/30 text-white text-base font-bold leading-normal hover:bg-white/10 hover:border-white transition-all gap-2"
+                            className="flex min-w-[180px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-8 bg-transparent border-2 border-white/30 text-white text-base font-semibold leading-normal hover:bg-white/10 hover:border-white transition-all gap-2"
                         >
                             {data.secondaryButton.icon && <span className="material-symbols-outlined">{data.secondaryButton.icon}</span>}
                             <span>{data.secondaryButton.text}</span>

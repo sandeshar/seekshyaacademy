@@ -22,8 +22,8 @@ const OurStory = ({ data }: OurStoryProps) => {
                 <div className="flex flex-col md:flex-row gap-8 lg:gap-16 items-center">
                     <div className="flex flex-col gap-6 flex-1">
                         <div className="flex flex-col gap-3">
-                            <span className="text-secondary font-black tracking-[0.2em] text-xs uppercase bg-secondary/5 w-fit px-4 py-1.5 rounded-full border border-secondary/10">{data?.badgeText}</span>
-                            <h2 className="text-slate-900 text-3xl lg:text-4xl font-black leading-tight font-lexend tracking-tight">
+                            <span className="text-secondary font-semibold tracking-[0.2em] text-xs uppercase bg-secondary/5 w-fit px-4 py-1.5 rounded-full border border-secondary/10">{data?.badgeText}</span>
+                            <h2 className="text-slate-900 text-3xl lg:text-4xl font-bold leading-tight font-lexend tracking-tight">
                                 {data?.title}
                             </h2>
                         </div>
@@ -51,7 +51,7 @@ const OurStory = ({ data }: OurStoryProps) => {
                                 <span className="material-symbols-outlined" style={{ fontSize: '32px' }}>{card.icon}</span>
                             </div>
                             <div className="relative z-10 flex flex-col gap-3">
-                                <h3 className="text-slate-900 text-xl font-bold leading-tight font-lexend">{card.title}</h3>
+                                <h3 className="text-slate-900 text-xl font-semibold leading-tight font-lexend">{card.title}</h3>
                                 <p className="text-slate-500 text-sm leading-relaxed font-sans opacity-95">
                                     {card.description}
                                 </p>

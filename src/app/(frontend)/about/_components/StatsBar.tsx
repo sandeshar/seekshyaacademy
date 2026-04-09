@@ -19,10 +19,10 @@ const StatsBar = ({ data }: StatsBarProps) => {
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 text-center lg:divide-x lg:divide-slate-100">
                     {data?.items?.map((item, idx) => (
                         <div key={idx} className="flex flex-col gap-4 group transition-all duration-300 hover:-translate-y-1">
-                            <span className="text-3xl md:text-4xl font-black text-primary drop-shadow-sm font-lexend tracking-tight">
+                            <span className="text-3xl md:text-4xl font-bold text-primary drop-shadow-sm font-lexend tracking-tight">
                                 {item.number}
                             </span>
-                            <span className="text-sm text-slate-500 font-bold uppercase tracking-[0.15em] font-sans opacity-80">
+                            <span className="text-sm text-slate-500 font-semibold uppercase tracking-[0.15em] font-sans opacity-80">
                                 {item.title}
                             </span>
                         </div>

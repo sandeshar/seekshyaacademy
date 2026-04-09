@@ -39,7 +39,7 @@ const SiteSettingsSchema: Schema = new Schema({
     siteName: { type: String, default: 'Seekshya Academy' },
     siteDescription: { type: String, default: 'The best CA institute in Nepal' },
     tagline: { type: String, default: 'Excellence in CA Education' },
-    contactEmail: { type: String, default: 'info@lakshyaca.edu.np' },
+    contactEmail: { type: String, default: 'info@seekshyaacademy.com' },
     contactPhone: { type: String, default: '+977-1-4XXXXXX' },
     address: { type: String, default: 'Putalisadak, Kathmandu, Nepal' },
     googleMapsUrl: { type: String, default: '' },

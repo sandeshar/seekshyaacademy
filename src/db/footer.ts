@@ -86,7 +86,7 @@ const FooterSchema = new Schema({
     contactInfo: {
         address: { type: String, default: 'Putalisadak, Kathmandu, Nepal' },
         phone: { type: String, default: '+977-1-4XXXXXX' },
-        email: { type: String, default: 'info@lakshyaca.edu.np' },
+        email: { type: String, default: 'info@seekshyaacademy.com' },
         googleMapEmbed: { type: String, default: '' }
     },
     socialLinks: {

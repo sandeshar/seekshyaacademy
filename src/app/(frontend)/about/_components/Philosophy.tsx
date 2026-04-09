@@ -17,7 +17,7 @@ const Philosophy = ({ data }: PhilosophyProps) => {
         <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24 flex justify-center bg-slate-50/70 border-y border-slate-100 relative">
             <div className="flex flex-col gap-10 lg:gap-16 w-full max-w-7xl">
                 <div className="text-center max-w-3xl mx-auto flex flex-col gap-5">
-                    <h2 className="text-slate-900 text-3xl lg:text-4xl font-black font-lexend tracking-tight tracking-tight">{data?.title}</h2>
+                    <h2 className="text-slate-900 text-3xl lg:text-4xl font-bold font-lexend tracking-tight tracking-tight">{data?.title}</h2>
                     <div className="h-1.5 w-24 bg-primary mx-auto rounded-full"></div>
                     <p className="text-slate-600 text-base lg:text-lg font-sans leading-relaxed opacity-90">{data?.description}</p>
                 </div>
@@ -29,7 +29,7 @@ const Philosophy = ({ data }: PhilosophyProps) => {
                                 <span className="material-symbols-outlined" style={{ fontSize: '28px' }}>{item.icon}</span>
                             </div>
                             <div className="flex flex-col gap-2 relative z-10">
-                                <h4 className="text-xl font-black text-slate-800 font-lexend tracking-tight">{item.title}</h4>
+                                <h4 className="text-xl font-semibold text-slate-800 font-lexend tracking-tight">{item.title}</h4>
                                 <p className="text-slate-500 text-sm md:text-base leading-relaxed font-sans opacity-95">
                                     {item.description}
                                 </p>
