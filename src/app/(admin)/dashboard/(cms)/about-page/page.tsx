@@ -12,7 +12,6 @@ const TABS = [
     { id: "about", label: "About Us", icon: "info" },
     { id: "cta1", label: "CTA Section 1", icon: "campaign" },
     { id: "philosophy", label: "Philosophy", icon: "psychology" },
-    { id: "cta2", label: "CTA Section 2", icon: "call" },
     { id: "seo", label: "SEO Settings", icon: "search" },
 ];
 
@@ -466,80 +465,6 @@ export default function AboutCMS() {
                                     >
                                         + Add Philosophy Item
                                     </button>
-                                </div>
-                            </div>
-                        </CMSSection>
-                    )}
-
-                    {activeTab === "cta2" && (
-                        <CMSSection
-                            title="CTA Section 2"
-                            isVisible={data.cta2.isVisible}
-                            onVisibilityChange={(v: boolean) => setData({ ...data, cta2: { ...data.cta2, isVisible: v } })}
-                        >
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="md:col-span-2">
-                                    <label className="block text-sm font-bold text-gray-700 mb-2">Title</label>
-                                    <input
-                                        type="text"
-                                        value={data.cta2.title}
-                                        onChange={(e) => setData({ ...data, cta2: { ...data.cta2, title: e.target.value } })}
-                                        className={inputClass}
-                                    />
-                                </div>
-                                <div className="md:col-span-2">
-                                    <label className="block text-sm font-bold text-gray-700 mb-2">Description</label>
-                                    <textarea
-                                        rows={3}
-                                        value={data.cta2.description}
-                                        onChange={(e) => setData({ ...data, cta2: { ...data.cta2, description: e.target.value } })}
-                                        className={inputClass}
-                                        placeholder="Add a convincing call to action statement..."
-                                    />
-                                </div>
-                                <div className="p-6 bg-gray-50 rounded-2xl border border-gray-100">
-                                    <h3 className="text-sm font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                        <span className="material-symbols-outlined text-primary text-lg">link</span>
-                                        Primary Button
-                                    </h3>
-                                    <div className="space-y-4">
-                                        <input
-                                            type="text"
-                                            placeholder="Button Text"
-                                            value={data.cta2.primaryButton.text}
-                                            onChange={(e) => setData({ ...data, cta2: { ...data.cta2, primaryButton: { ...data.cta2.primaryButton, text: e.target.value } } })}
-                                            className={inputClass}
-                                        />
-                                        <input
-                                            type="text"
-                                            placeholder="URL / Link"
-                                            value={data.cta2.primaryButton.link}
-                                            onChange={(e) => setData({ ...data, cta2: { ...data.cta2, primaryButton: { ...data.cta2.primaryButton, link: e.target.value } } })}
-                                            className={inputClass}
-                                        />
-                                    </div>
-                                </div>
-                                <div className="p-6 bg-gray-50 rounded-2xl border border-gray-100">
-                                    <h3 className="text-sm font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                        <span className="material-symbols-outlined text-secondary text-lg">link</span>
-                                        Secondary Button
-                                    </h3>
-                                    <div className="space-y-4">
-                                        <input
-                                            type="text"
-                                            placeholder="Button Text"
-                                            value={data.cta2.secondaryButton.text}
-                                            onChange={(e) => setData({ ...data, cta2: { ...data.cta2, secondaryButton: { ...data.cta2.secondaryButton, text: e.target.value } } })}
-                                            className={inputClass}
-                                        />
-                                        <input
-                                            type="text"
-                                            placeholder="URL / Link"
-                                            value={data.cta2.secondaryButton.link}
-                                            onChange={(e) => setData({ ...data, cta2: { ...data.cta2, secondaryButton: { ...data.cta2.secondaryButton, link: e.target.value } } })}
-                                            className={inputClass}
-                                        />
-                                    </div>
                                 </div>
                             </div>
                         </CMSSection>

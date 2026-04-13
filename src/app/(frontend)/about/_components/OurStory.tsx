@@ -35,7 +35,7 @@ const OurStory = ({ data }: OurStoryProps) => {
                         <div className="absolute inset-0 bg-primary/20 rounded-2xl transform rotate-3 scale-102 blur-sm group-hover:rotate-0 transition-transform duration-700"></div>
                         <div
                             className="relative w-full bg-center bg-no-repeat aspect-[4/3] bg-cover rounded-2xl shadow-2xl z-10"
-                            style={{ backgroundImage: `url("${data?.imageUrl || 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop'}")` }}
+                            style={{ backgroundImage: `url("${data?.imageUrl}")` }}
                         >
                             <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent rounded-2xl"></div>
                         </div>

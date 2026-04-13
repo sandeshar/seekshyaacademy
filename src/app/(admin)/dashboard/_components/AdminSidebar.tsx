@@ -31,6 +31,12 @@ const menuItems = [
     ],
   },
   {
+    name: "Student Ranks",
+    href: "/dashboard/student-ranks",
+    icon: "grade",
+    permission: "student-ranks",
+  },
+  {
     name: "Notices",
     icon: "campaign",
     permission: "notices",

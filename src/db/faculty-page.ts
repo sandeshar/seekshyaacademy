@@ -50,8 +50,8 @@ const FacultyPageSchema: Schema = new Schema({
         badgeText: { type: String, default: "Excellence in Education" },
         title: { type: String, default: "Meet Your Mentors" },
         description: { type: String, default: "Learn from the experts leading the way for the ICAN CA New Syllabus 2025. Our faculty combines academic rigor with real-world practical insights." },
-        backgroundImage: { type: String, default: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop" },
-        overlayOpacity: { type: Number, default: 70 },
+        backgroundImage: { type: String, default: "https://lh3.googleusercontent.com/aida-public/AB6AXuD9FjJqV3LRHmwHcLQe9ItyjofWWaT1o2Jqbe7czDifiOabrAClY5HLFErF0sCTZsWusYNTZAD3tVroFtI8yjfzNNaR6A7po5O5jYZLVgieWTTmu1vtgsIFgiGX95hlD42faxTu05p5NfAYXIjd9mVi1Jzhz44d0gB5Z5__EUFq753howoR8ZshPMD9bVr5G5n6-QBYy5XwLjzD7udmOwwqBaaRxxYyEBlCCj5wN17RugzMg_nrMDCE6fmM1w2Rgi-rxL7P7mPTi06F" },
+        overlayOpacity: { type: Number, default: 80 },
         primaryButton: {
             text: { type: String, default: "View Courses" },
             link: { type: String, default: "/courses" },

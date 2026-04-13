@@ -43,7 +43,7 @@ const SyllabusHighlight = ({ data }: SyllabusHighlightProps) => {
                     </div>
                     <div
                         className="w-full md:w-1/3 min-h-[250px] bg-center bg-cover bg-no-repeat transition-all duration-700 md:group-hover:scale-105"
-                        style={{ backgroundImage: `url("${data?.imageUrl || 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1470&auto=format&fit=crop'}")` }}
+                        style={{ backgroundImage: `url("${data?.imageUrl}")` }}
                     >
                         <div className="absolute inset-0 bg-linear-to-r from-primary/50 to-transparent md:from-primary/20"></div>
                     </div>

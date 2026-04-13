@@ -18,6 +18,7 @@ interface IUser {
 const ALL_PERMISSIONS = [
     { id: 'cms', label: 'CMS' },
     { id: 'teachers', label: 'Teachers' },
+    { id: 'student-ranks', label: 'Student Ranks' },
     { id: 'courses', label: 'Courses' },
     { id: 'notices', label: 'Notices' },
     { id: 'blogs', label: 'Blogs' },

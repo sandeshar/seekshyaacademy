@@ -66,21 +66,6 @@ interface IAboutPage extends Document {
             }
         ];
     };
-    cta2: {
-        isVisible: boolean;
-        title: string;
-        description: string;
-        primaryButton: {
-            text: string;
-            link: string;
-            icon?: string;
-        };
-        secondaryButton: {
-            text: string;
-            link: string;
-            icon?: string;
-        };
-    };
     seo: {
         title: string;
         description: string;
@@ -93,7 +78,7 @@ const AboutSchema: Schema = new Schema({
         badgeText: { type: String, default: "Est 1990" },
         title: { type: String, default: "Shaping the Future of Chartered Accountancy" },
         description: { type: String, default: "Seekshya Academy has been a beacon of excellence in Chartered Accountancy education since 1990. Our commitment to quality teaching and student success has made us a trusted name among ICAN CA aspirants." },
-        backgroundImage: { type: String, default: "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?q=80&w=2070&auto=format&fit=crop" },
+        backgroundImage: { type: String, default: "https://lh3.googleusercontent.com/aida-public/AB6AXuD9FjJqV3LRHmwHcLQe9ItyjofWWaT1o2Jqbe7czDifiOabrAClY5HLFErF0sCTZsWusYNTZAD3tVroFtI8yjfzNNaR6A7po5O5jYZLVgieWTTmu1vtgsIFgiGX95hlD42faxTu05p5NfAYXIjd9mVi1Jzhz44d0gB5Z5__EUFq753howoR8ZshPMD9bVr5G5n6-QBYy5XwLjzD7udmOwwqBaaRxxYyEBlCCj5wN17RugzMg_nrMDCE6fmM1w2Rgi-rxL7P7mPTi06F" },
         overlayOpacity: { type: Number, default: 80 },
         primaryButton: {
             text: { type: String, default: "Explore Courses" },
@@ -128,7 +113,7 @@ const AboutSchema: Schema = new Schema({
         badgeText: { type: String, default: "About Seekshya Academy" },
         title: { type: String, default: "Committed to Your Chartered Accountancy Success" },
         description: { type: String, default: "At Seekshya Academy, we believe in empowering our students with the knowledge and skills needed to excel in the Chartered Accountancy profession. Our experienced faculty and comprehensive curriculum ensure that you are well-prepared for every stage of your journey." },
-        imageUrl: { type: String, default: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1470&auto=format&fit=crop" },
+        imageUrl: { type: String, default: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop" },
         cards: {
             type: [
                 {
@@ -164,52 +149,6 @@ const AboutSchema: Schema = new Schema({
         imageUrl: { type: String, default: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1470&auto=format&fit=crop" }
     },
     philosophy: {
-        isVisible: { type: Boolean, default: true },
-        title: { type: String, default: "Our Teaching Philosophy" },
-        description: { type: String, default: "At Seekshya Academy, we believe in a student-centric approach that fosters critical thinking, practical application, and continuous improvement." },
-        items: {
-            type: [
-                {
-                    icon: { type: String },
-                    title: { type: String },
-                    description: { type: String }
-                }
-            ],
-            default: [
-                {
-                    icon: "lightbulb",
-                    title: "Innovative Teaching",
-                    description: "Incorporating the latest teaching methodologies and technologies."
-                },
-                {
-                    icon: "group",
-                    title: "Collaborative Learning",
-                    description: "Encouraging peer-to-peer interaction and group studies."
-                },
-                {
-                    icon: "assessment",
-                    title: "Continuous Assessment",
-                    description: "Regular tests and feedback to track progress and identify areas for improvement."
-                }
-            ]
-        }
-    },
-    cta2: {
-        isVisible: { type: Boolean, default: true },
-        title: { type: String, default: "Ready to Excel in Chartered Accountancy?" },
-        description: { type: String, default: "Join Seekshya Academy and embark on a journey of learning, growth, and success in the Chartered Accountancy profession." },
-        primaryButton: {
-            text: { type: String, default: "Get Started" },
-            link: { type: String, default: "/register" },
-            icon: { type: String, default: "arrow_forward" }
-        },
-        secondaryButton: {
-            text: { type: String, default: "Contact Us" },
-            link: { type: String, default: "/contact" },
-            icon: { type: String, default: "call" }
-        }
-    },
-    seo: {
         title: { type: String, default: "About Seekshya Academy - Excellence in Chartered Accountancy Education" },
         description: { type: String, default: "Learn about Seekshya Academy's commitment to excellence in Chartered Accountancy education since 1990. Discover our teaching philosophy, expert faculty, and comprehensive curriculum designed to help you succeed in the ICAN CA New Syllabus 2025." }
     }
