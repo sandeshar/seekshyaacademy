@@ -1,4 +1,4 @@
-import { getPageBySlug } from "@/actions/pages";
+﻿import { getPageBySlug } from "@/actions/pages";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import Hero from "../_components/Hero";
@@ -133,6 +133,17 @@ export default async function CustomDynamicPage({ params }: IPartialPageProps) {
                             page.header.textAlign === 'right' ? 'text-right' : 'text-center'}
                         ${page.header.textColor === 'dark' ? 'text-slate-900' : 'text-white'}`}
                     >
+                        {page.header.badgeText && (
+                            <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 font-bold text-xs uppercase tracking-widest animate-in fade-in slide-in-from-bottom-2 duration-300
+                                ${page.header.textColor === 'dark' ? 'bg-primary/10 text-primary border border-primary/10' : 'bg-white/10 text-white border border-white/20 backdrop-blur-md'}`}
+                            >
+                                <span className="relative flex h-2 w-2">
+                                    <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${page.header.textColor === 'dark' ? 'bg-primary' : 'bg-secondary'}`}></span>
+                                    <span className={`relative inline-flex rounded-full h-2 w-2 ${page.header.textColor === 'dark' ? 'bg-primary' : 'bg-secondary'}`}></span>
+                                </span>
+                                {page.header.badgeText}
+                            </div>
+                        )}
                         <h1 className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tight mb-6 animate-in slide-in-from-bottom-4 duration-500">
                             {page.header.title || page.title}
                         </h1>

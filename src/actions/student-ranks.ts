@@ -1,4 +1,4 @@
-"use server";
+﻿"use server";
 
 import { cacheTag, revalidatePath, revalidateTag } from "next/cache";
 import dbConnect from "@/db/db";
@@ -44,7 +44,7 @@ export async function createStudentRank(data: any) {
             data.order = lastRank ? (lastRank.order || 0) + 1 : 0;
         }
         const rank = await StudentRank.create(data);
-        revalidateTag(CACHE_TAGS.STUDENT_RANKS);
+        revalidateTag(CACHE_TAGS.STUDENT_RANKS, "page");
         revalidatePath('/dashboard/student-ranks');
         return JSON.parse(JSON.stringify(rank));
     } catch (error: any) {
@@ -59,7 +59,7 @@ export async function updateStudentRank(id: string, data: any) {
         }
         await dbConnect();
         const updatedRank = await StudentRank.findByIdAndUpdate(id, data, { new: true });
-        revalidateTag(CACHE_TAGS.STUDENT_RANKS);
+        revalidateTag(CACHE_TAGS.STUDENT_RANKS, "page");
         revalidatePath('/dashboard/student-ranks');
         return JSON.parse(JSON.stringify(updatedRank));
     } catch (error: any) {
@@ -78,10 +78,11 @@ export async function deleteStudentRank(id: string) {
             await deleteFileByUrl(rank.image);
         }
         await StudentRank.findByIdAndDelete(id);
-        revalidateTag(CACHE_TAGS.STUDENT_RANKS);
+        revalidateTag(CACHE_TAGS.STUDENT_RANKS, "page");
         revalidatePath('/dashboard/student-ranks');
         return { success: true };
     } catch (error: any) {
         throw new Error(error.message);
     }
 }
+

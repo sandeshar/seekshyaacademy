@@ -73,6 +73,26 @@ export interface IHomepage extends Document {
             popular: boolean;
         }[];
     };
+    about: {
+        isVisible: boolean;
+        badgeText: string;
+        title: string;
+        description: string;
+        bullets: string[];
+        videoUrl?: string;
+        stats: {
+            value: string;
+            label: string;
+        }[];
+    };
+    stats: {
+        isVisible: boolean;
+        items: {
+            label: string;
+            title: string;
+            icon: string;
+        }[];
+    };
     seo: {
         title: string;
         description: string;
@@ -85,8 +105,8 @@ const HomepageSchema: Schema = new Schema({
         badgeText: { type: String, default: "New Syllabus 2025 Ready" },
         title: { type: String, default: "Seekshya Academy – Your Target to Chartered Accountancy Success" },
         description: { type: String, default: "Comprehensive preparation for ICAN CA New Syllabus 2025. From Foundation to Advisory Level, we guide your journey to becoming a professional." },
-        backgroundImage: { type: String, default: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop" },
-        overlayOpacity: { type: Number, default: 40 },
+        backgroundImage: { type: String, default: "https://lh3.googleusercontent.com/aida-public/AB6AXuD9FjJqV3LRHmwHcLQe9ItyjofWWaT1o2Jqbe7czDifiOabrAClY5HLFErF0sCTZsWusYNTZAD3tVroFtI8yjfzNNaR6A7po5O5jYZLVgieWTTmu1vtgsIFgiGX95hlD42faxTu05p5NfAYXIjd9mVi1Jzhz44d0gB5Z5__EUFq753howoR8ZshPMD9bVr5G5n6-QBYy5XwLjzD7udmOwwqBaaRxxYyEBlCCj5wN17RugzMg_nrMDCE6fmM1w2Rgi-rxL7P7mPTi06F" },
+        overlayOpacity: { type: Number, default: 10 },
         primaryButton: {
             text: { type: String, default: "Online Registration" },
             link: { type: String, default: "/register" },
@@ -96,6 +116,64 @@ const HomepageSchema: Schema = new Schema({
             text: { type: String, default: "Explore Courses" },
             link: { type: String, default: "/courses" },
             icon: { type: String, default: "explore" }
+        }
+    },
+    about: {
+        isVisible: { type: Boolean, default: true },
+        badgeText: { type: String, default: "What is ACCA?" },
+        title: { type: String, default: "Global Professional Accountancy Qualification" },
+        description: { type: String, default: "ACCA (the Association of Chartered Certified Accountants) is the global body for professional accountants, offering the Chartered Certified Accountant qualification." },
+        bullets: {
+            type: [String],
+            default: [
+                "Recognized in 180+ countries worldwide",
+                "High employability and career growth",
+                "Flexiblility with exams and practical experience",
+                "Membership of a global network of 200,000+ members"
+            ]
+        },
+        videoUrl: { type: String, default: "" },
+        stats: {
+            type: [
+                {
+                    value: String,
+                    label: String
+                }
+            ],
+            default: [
+                { value: "180+", label: "Countries Recognized" },
+                { value: "200k+", label: "Professional Members" },
+                { value: "500k+", label: "Global Students" }
+            ]
+        }
+    },
+    stats: {
+        isVisible: { type: Boolean, default: true },
+        items: {
+            type: [
+                {
+                    label: String,
+                    title: String,
+                    icon: String
+                }
+            ],
+            default: [
+                {
+                    label: "Course Levels",
+                    title: "3 Comprehensive Stages",
+                    icon: "layers"
+                },
+                {
+                    label: "Duration",
+                    title: "2.5 to 3 Years",
+                    icon: "schedule"
+                },
+                {
+                    label: "Delivery Mode",
+                    title: "Hybrid & Classroom",
+                    icon: "laptop_mac"
+                }
+            ]
         }
     },
     highlights: {

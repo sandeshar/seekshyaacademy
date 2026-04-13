@@ -27,7 +27,7 @@ export default async function BlogSection() {
                         <article key={blog._id} className="group overflow-hidden rounded-3xl border border-outline-variant/10 bg-surface-bright shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl">
                             <Link href={`/blogs/${blog.slug}`} className="block relative h-60 w-full overflow-hidden">
                                 <Image
-                                    src={blog.image || "/placeholder-blog.jpg"}
+                                    src={blog.featuredImage || blog.image || "/placeholder-blog.jpg"}
                                     alt={blog.title}
                                     fill
                                     className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -49,7 +49,7 @@ export default async function BlogSection() {
                                     </h3>
                                 </Link>
                                 <p className="mb-4 line-clamp-2 text-sm text-on-surface-variant">
-                                    {blog.description || blog.content?.replace(/<[^>]*>/g, '').substring(0, 120) + "..."}
+                                    {blog.excerpt || blog.description || blog.content?.replace(/<[^>]*>/g, '').substring(0, 120) + "..."}
                                 </p>
                                 <Link href={`/blogs/${blog.slug}`} className="inline-flex items-center gap-1 text-sm font-bold text-secondary hover:underline">
                                     Read More

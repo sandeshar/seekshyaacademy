@@ -1,78 +1,141 @@
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+"use client";
+
+import React from "react";
+import Link from "next/link";
 
 interface HeroProps {
     data: {
-        badgeText: string;
-        title: string;
-        description: string;
-        backgroundImage: string;
+        title?: string;
+        subtitle?: string;
+        backgroundImage?: string;
+        primaryButton?: {
+            text?: string;
+            link?: string;
+            variant?: "solid" | "outline" | "ghost";
+            icon?: string;
+        };
+        secondaryButton?: {
+            text?: string;
+            link?: string;
+            variant?: "solid" | "outline" | "ghost";
+            icon?: string;
+        };
+        height?: "small" | "medium" | "large";
+        textAlign?: "left" | "center" | "right";
+        textColor?: "light" | "dark";
         overlayOpacity?: number;
-        primaryButton: { text: string; link: string; icon?: string };
-        secondaryButton: { text: string; link: string; icon?: string };
     };
 }
 
 const Hero = ({ data }: HeroProps) => {
-    const opacityValue = data?.overlayOpacity !== undefined ? data.overlayOpacity / 100 : 0.4;
+    if (!data) return null;
+
+    const {
+        title,
+        subtitle,
+        backgroundImage,
+        primaryButton,
+        secondaryButton,
+        height = "medium",
+        textAlign = "center",
+        textColor = "light",
+        overlayOpacity = 40,
+    } = data;
+
+    const heightClasses = {
+        small: "min-h-[300px]",
+        medium: "min-h-[450px]",
+        large: "min-h-[600px]",
+    };
+
+    const alignClasses = {
+        left: "justify-start text-left",
+        center: "justify-center text-center",
+        right: "justify-end text-right",
+    };
 
     return (
-        <div className="relative w-full overflow-hidden bg-slate-900">
-            {/* Background Image with Overlay */}
-            <div className="absolute inset-0 z-0">
-                <Image
-                    src={data?.backgroundImage || "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop"}
-                    alt="Students studying"
-                    fill
-                    className="object-cover"
-                    style={{ opacity: 1 - (opacityValue * 0.5) }} // Subtle image dimming
-                    priority
+        <section
+            className={`relative flex items-center overflow-hidden border-b border-slate-200 
+        ${heightClasses[height]}
+        ${alignClasses[textAlign].split(" ")[0]}
+        ${textColor === 'dark' ? 'bg-white' : 'bg-primary'}`}
+        >
+            {backgroundImage && (
+                <div className="absolute inset-0 pointer-events-none">
+                    <img
+                        src={backgroundImage}
+                        alt={title || "Hero Background"}
+                        className="w-full h-full object-cover"
+                    />
+                    <div
+                        className={`absolute inset-0 ${textColor === 'dark' ? 'bg-white' : 'bg-primary'}`}
+                        style={{ opacity: (overlayOpacity || 40) / 100 }}
+                    />
+                </div>
+            )}
+            <div className={`layout-container px-6 md:px-12 lg:px-24 relative z-10 py-12 
+        ${alignClasses[textAlign]}
+        ${textColor === 'dark' ? 'text-slate-900' : 'text-white'}`}
+            >
+                <h1 className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tight mb-6 animate-in slide-in-from-bottom-4 duration-500">
+                    {title}
+                </h1>
+                {subtitle && (
+                    <p className={`text-lg md:text-2xl max-w-3xl font-medium animate-in slide-in-from-bottom-6 duration-700 delay-100 leading-relaxed
+            ${textAlign === 'center' ? 'mx-auto' : ''}
+            ${textColor === 'dark' ? 'text-slate-600' : 'text-slate-100'}`}
+                    >
+                        {subtitle}
+                    </p>
+                )}
+                <div className={`h-1.5 w-24 bg-secondary rounded-full mt-10 shadow-lg shadow-secondary/20 
+          ${textAlign === 'center' ? 'mx-auto' :
+                        textAlign === 'right' ? 'ml-auto' : ''}`}
                 />
-                <div
-                    className="absolute inset-0 bg-black z-10"
-                    style={{ opacity: opacityValue }}
-                ></div>
-                <div className="absolute bottom-0 left-0 w-full h-1/3 bg-linear-to-t from-slate-900/80 to-transparent z-20"></div>
-            </div>
 
-            <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 flex flex-col items-center text-center">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 border border-primary/30 mb-6 backdrop-blur-md">
-                    <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-orange opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-orange"></span>
-                    </span>
-                    <span className="text-xs font-bold text-white tracking-wide uppercase">{data?.badgeText}</span>
-                </div>
-                <h1
-                    className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] mb-6 max-w-4xl drop-shadow-md whitespace-pre-line"
-                    dangerouslySetInnerHTML={{ __html: data?.title?.replace('Chartered Accountancy', '<span class="text-accent-gold">Chartered Accountancy</span>') || '' }}
-                />
-                <p className="text-lg sm:text-xl text-slate-100 max-w-2xl mb-10 leading-relaxed font-medium">
-                    {data?.description}
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                    <Link
-                        href={data?.primaryButton?.link || '#'}
-                        className="h-14 px-10 rounded-xl bg-primary hover:bg-primary-dark text-white font-bold shadow-xl shadow-primary/20 transition-all hover:scale-105 flex items-center justify-center gap-3 group"
+                {(primaryButton?.text || secondaryButton?.text) && (
+                    <div className={`flex flex-wrap gap-4 mt-12 animate-in slide-in-from-bottom-8 duration-1000 delay-200
+            ${textAlign === 'center' ? 'justify-center' :
+                            textAlign === 'right' ? 'justify-end' : 'justify-start'}`}
                     >
-                        <span>{data?.primaryButton?.text}</span>
-                        <span className="material-symbols-outlined text-xl transition-transform group-hover:translate-x-1">{data?.primaryButton?.icon}</span>
-                    </Link>
-                    <Link
-                        href={data?.secondaryButton?.link || '#'}
-                        className="h-14 px-10 rounded-xl bg-white/10 border border-white/20 backdrop-blur-md hover:bg-white/20 text-white font-bold transition-all flex items-center justify-center gap-3 group"
-                    >
-                        <span>{data?.secondaryButton?.text}</span>
-                        {data?.secondaryButton?.icon && (
-                            <span className="material-symbols-outlined text-xl transition-transform group-hover:translate-x-1">{data?.secondaryButton?.icon}</span>
+                        {primaryButton?.text && (
+                            <Link
+                                href={primaryButton.link || "#"}
+                                className={`px-10 py-4 rounded-xl font-bold transition-all active:scale-95 shadow-xl shadow-secondary/20 uppercase tracking-wide text-sm flex items-center gap-2
+                    ${primaryButton.variant === 'outline' ?
+                                        'border-2 border-secondary text-secondary hover:bg-secondary hover:text-white' :
+                                        primaryButton.variant === 'ghost' ?
+                                            'text-secondary hover:bg-red-50' :
+                                            'bg-secondary text-white hover:bg-secondary-dark'}`}
+                            >
+                                {primaryButton.icon && (
+                                    <span className="material-symbols-outlined text-[20px]">{primaryButton.icon}</span>
+                                )}
+                                {primaryButton.text}
+                            </Link>
                         )}
-                    </Link>
-                </div>
+                        {secondaryButton?.text && (
+                            <Link
+                                href={secondaryButton.link || "#"}
+                                className={`px-10 py-4 rounded-xl font-bold transition-all active:scale-95 uppercase tracking-wide text-sm flex items-center gap-2
+                    ${secondaryButton.variant === 'solid' ?
+                                        'bg-white text-primary hover:bg-slate-100 shadow-xl' :
+                                        secondaryButton.variant === 'ghost' ?
+                                            (textColor === 'dark' ? 'text-slate-600 hover:bg-slate-100' : 'text-white/80 hover:text-white hover:bg-white/10') :
+                                            `border-2 ${textColor === 'dark' ? 'border-primary text-primary hover:bg-slate-50' : 'border-white/30 text-white hover:border-white hover:bg-white/10'}`}`}
+                            >
+                                {secondaryButton.icon && (
+                                    <span className="material-symbols-outlined text-[20px]">{secondaryButton.icon}</span>
+                                )}
+                                {secondaryButton.text}
+                            </Link>
+                        )}
+                    </div>
+                )}
             </div>
-        </div>
+        </section>
     );
 };
 
 export default Hero;
-

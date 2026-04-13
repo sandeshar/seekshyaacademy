@@ -8,6 +8,8 @@ import { getHomepage, updateHomepage } from "@/actions/cms-actions";
 
 const TABS = [
     { id: "hero", label: "Hero", icon: "bolt" },
+    { id: "stats", label: "Stats Bar", icon: "account_balance_wallet" },
+    { id: "about", label: "What is ACCA", icon: "info" },
     { id: "highlights", label: "Highlights", icon: "star" },
     { id: "courses", label: "Courses", icon: "school" },
     { id: "why", label: "Why Choose Us", icon: "thumb_up" },
@@ -139,6 +141,217 @@ export default function HomepageCMS() {
                                             className="w-full px-4 py-2.5 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-secondary/20"
                                         />
                                     </div>
+                                </div>
+                            </div>
+                        </CMSSection>
+                    )}
+
+                    {activeTab === "stats" && (
+                        <CMSSection
+                            title="Floating Stats Bar"
+                            isVisible={data.stats?.isVisible ?? true}
+                            onVisibilityChange={(v) => setData({ ...data, stats: { ...data.stats, isVisible: v } })}
+                        >
+                            <div className="space-y-6">
+                                <div className="grid grid-cols-1 gap-6">
+                                    {data.stats?.items?.map((item: any, idx: number) => (
+                                        <div key={idx} className="p-6 bg-gray-50 rounded-2xl border border-gray-100 flex flex-col md:flex-row gap-6 items-start">
+                                            <div className="w-full md:w-64 space-y-4">
+                                                <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest">Icon</label>
+                                                <IconChooser
+                                                    value={item.icon}
+                                                    onChange={(icon) => {
+                                                        const newItems = [...data.stats.items];
+                                                        newItems[idx].icon = icon;
+                                                        setData({ ...data, stats: { ...data.stats, items: newItems } });
+                                                    }}
+                                                />
+                                            </div>
+                                            <div className="flex-1 space-y-4 w-full">
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                    <div>
+                                                        <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Label (Small Text)</label>
+                                                        <input
+                                                            placeholder="e.g. Course Levels"
+                                                            value={item.label}
+                                                            onChange={(e) => {
+                                                                const newItems = [...data.stats.items];
+                                                                newItems[idx].label = e.target.value;
+                                                                setData({ ...data, stats: { ...data.stats, items: newItems } });
+                                                            }}
+                                                            className="w-full px-4 py-2.5 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-primary/20"
+                                                        />
+                                                    </div>
+                                                    <div>
+                                                        <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Title (Bold Text)</label>
+                                                        <input
+                                                            placeholder="e.g. 3 Stage Levels"
+                                                            value={item.title}
+                                                            onChange={(e) => {
+                                                                const newItems = [...data.stats.items];
+                                                                newItems[idx].title = e.target.value;
+                                                                setData({ ...data, stats: { ...data.stats, items: newItems } });
+                                                            }}
+                                                            className="w-full px-4 py-2.5 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-primary/20"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button
+                                                onClick={() => {
+                                                    const newItems = data.stats.items.filter((_: any, i: number) => i !== idx);
+                                                    setData({ ...data, stats: { ...data.stats, items: newItems } });
+                                                }}
+                                                className="p-2 text-red-500 hover:bg-red-50 rounded-lg self-center"
+                                            >
+                                                <span className="material-symbols-outlined">delete_sweep</span>
+                                            </button>
+                                        </div>
+                                    ))}
+
+                                    <button
+                                        onClick={() => {
+                                            const currentStats = data.stats || { items: [] };
+                                            setData({
+                                                ...data,
+                                                stats: {
+                                                    ...currentStats,
+                                                    items: [...(currentStats.items || []), { label: "", title: "", icon: "star" }]
+                                                }
+                                            });
+                                        }}
+                                        className="w-full py-4 border-2 border-dashed border-gray-200 rounded-2xl text-gray-500 font-bold hover:border-primary hover:text-primary transition-all flex items-center justify-center gap-2 bg-white"
+                                    >
+                                        <span className="material-symbols-outlined">add_circle</span>
+                                        Add New Stat Card
+                                    </button>
+                                </div>
+                            </div>
+                        </CMSSection>
+                    )}
+
+                    {activeTab === "about" && (
+                        <CMSSection
+                            title="What is ACCA? Section"
+                            isVisible={data.about?.isVisible ?? true}
+                            onVisibilityChange={(v) => setData({ ...data, about: { ...data.about, isVisible: v } })}
+                        >
+                            <div className="space-y-6">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="md:col-span-2">
+                                        <label className="block text-sm font-bold text-gray-700 mb-2">Badge Text</label>
+                                        <input
+                                            type="text"
+                                            value={data.about?.badgeText || ""}
+                                            onChange={(e) => setData({ ...data, about: { ...(data.about || {}), badgeText: e.target.value } })}
+                                            className={inputClass}
+                                        />
+                                    </div>
+                                    <div className="md:col-span-2">
+                                        <label className="block text-sm font-bold text-gray-700 mb-2">Title</label>
+                                        <input
+                                            type="text"
+                                            value={data.about?.title || ""}
+                                            onChange={(e) => setData({ ...data, about: { ...(data.about || {}), title: e.target.value } })}
+                                            className={inputClass}
+                                        />
+                                    </div>
+                                    <div className="md:col-span-2">
+                                        <label className="block text-sm font-bold text-gray-700 mb-2">Description</label>
+                                        <textarea
+                                            rows={3}
+                                            value={data.about?.description || ""}
+                                            onChange={(e) => setData({ ...data, about: { ...(data.about || {}), description: e.target.value } })}
+                                            className={inputClass}
+                                        />
+                                    </div>
+                                    <div className="md:col-span-2">
+                                        <label className="block text-sm font-bold text-gray-700 mb-2">Video URL (Optional)</label>
+                                        <input
+                                            type="text"
+                                            placeholder="e.g. https://youtube.com/..."
+                                            value={data.about?.videoUrl || ""}
+                                            onChange={(e) => setData({ ...data, about: { ...(data.about || {}), videoUrl: e.target.value } })}
+                                            className={inputClass}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="space-y-4 pt-4 border-t">
+                                    <h4 className="font-bold text-gray-700 font-headline">Bullet Points</h4>
+                                    {(data.about?.bullets || []).map((bullet: string, idx: number) => (
+                                        <div key={idx} className="flex gap-2">
+                                            <input
+                                                value={bullet}
+                                                onChange={(e) => {
+                                                    const newBullets = [...(data.about?.bullets || [])];
+                                                    newBullets[idx] = e.target.value;
+                                                    setData({ ...data, about: { ...data.about, bullets: newBullets } });
+                                                }}
+                                                className="flex-1 px-4 py-2 border rounded-lg"
+                                            />
+                                            <button
+                                                onClick={() => {
+                                                    const newBullets = (data.about?.bullets || []).filter((_: any, i: number) => i !== idx);
+                                                    setData({ ...data, about: { ...data.about, bullets: newBullets } });
+                                                }}
+                                                className="p-2 text-red-500"
+                                            >
+                                                <span className="material-symbols-outlined">delete</span>
+                                            </button>
+                                        </div>
+                                    ))}
+                                    <button
+                                        onClick={() => setData({ ...data, about: { ...(data.about || {}), bullets: [...(data.about?.bullets || []), ""] } })}
+                                        className="text-sm text-primary font-bold flex items-center gap-1"
+                                    >
+                                        <span className="material-symbols-outlined text-base">add</span> Add Bullet
+                                    </button>
+                                </div>
+
+                                <div className="space-y-4 pt-4 border-t">
+                                    <h4 className="font-bold text-gray-700 font-headline">Small Stats Cards</h4>
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                        {(data.about?.stats || []).map((stat: any, idx: number) => (
+                                            <div key={idx} className="p-4 bg-gray-50 rounded-xl border border-gray-100 space-y-2 relative">
+                                                <input
+                                                    placeholder="Value (e.g. 180+)"
+                                                    value={stat.value}
+                                                    onChange={(e) => {
+                                                        const newStats = [...(data.about?.stats || [])];
+                                                        newStats[idx].value = e.target.value;
+                                                        setData({ ...data, about: { ...data.about, stats: newStats } });
+                                                    }}
+                                                    className="w-full px-3 py-1.5 border rounded-lg text-sm font-bold"
+                                                />
+                                                <input
+                                                    placeholder="Label (e.g. Countries)"
+                                                    value={stat.label}
+                                                    onChange={(e) => {
+                                                        const newStats = [...(data.about?.stats || [])];
+                                                        newStats[idx].label = e.target.value;
+                                                        setData({ ...data, about: { ...data.about, stats: newStats } });
+                                                    }}
+                                                    className="w-full px-3 py-1.5 border rounded-lg text-xs"
+                                                />
+                                                <button
+                                                    onClick={() => {
+                                                        const newStats = (data.about?.stats || []).filter((_: any, i: number) => i !== idx);
+                                                        setData({ ...data, about: { ...data.about, stats: newStats } });
+                                                    }}
+                                                    className="absolute -top-2 -right-2 bg-white text-red-500 rounded-full shadow-sm p-1 border"
+                                                >
+                                                    <span className="material-symbols-outlined text-xs">close</span>
+                                                </button>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <button
+                                        onClick={() => setData({ ...data, about: { ...(data.about || {}), stats: [...(data.about?.stats || []), { value: "", label: "" }] } })}
+                                        className="text-sm text-primary font-bold flex items-center gap-1"
+                                    >
+                                        <span className="material-symbols-outlined text-base">add</span> Add Stat
+                                    </button>
                                 </div>
                             </div>
                         </CMSSection>

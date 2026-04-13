@@ -25,6 +25,7 @@ export interface IPage extends Document {
     }[];
     header?: {
         isVisible: boolean;
+        badgeText?: string;
         title: string;
         subtitle?: string;
         backgroundImage?: string;
@@ -79,6 +80,7 @@ const PageSchema: Schema = new Schema({
     }],
     header: {
         isVisible: { type: Boolean, default: false },
+        badgeText: { type: String },
         title: { type: String },
         subtitle: { type: String },
         backgroundImage: { type: String },

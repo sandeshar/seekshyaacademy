@@ -17,6 +17,7 @@ interface IPageFormProps {
     initialData?: IPage & {
         header?: {
             isVisible: boolean;
+            badgeText?: string;
             title: string;
             subtitle?: string;
             backgroundImage?: string;
@@ -24,8 +25,8 @@ interface IPageFormProps {
             textAlign?: 'left' | 'center' | 'right';
             textColor?: 'light' | 'dark';
             height?: 'small' | 'medium' | 'large';
-            primaryButton?: { text: string; link: string; variant?: 'solid' | 'outline' | 'ghost' };
-            secondaryButton?: { text: string; link: string; variant?: 'solid' | 'outline' | 'ghost' };
+            primaryButton?: { text: string; link: string; icon?: string; variant?: 'solid' | 'outline' | 'ghost' };
+            secondaryButton?: { text: string; link: string; icon?: string; variant?: 'solid' | 'outline' | 'ghost' };
         }
     };
 }
@@ -43,6 +44,7 @@ const EMPTY_HERO = {
 
 const EMPTY_HEADER = {
     isVisible: false,
+    badgeText: "",
     title: "",
     subtitle: "",
     backgroundImage: "",
@@ -50,8 +52,8 @@ const EMPTY_HEADER = {
     textAlign: 'center' as const,
     textColor: 'light' as const,
     height: 'small' as const,
-    primaryButton: { text: "", link: "", variant: "solid" as const },
-    secondaryButton: { text: "", link: "", variant: "outline" as const }
+    primaryButton: { text: "", link: "", icon: "", variant: "solid" as const },
+    secondaryButton: { text: "", link: "", icon: "", variant: "outline" as const }
 };
 
 type TabType = "general" | "content" | "header" | "seo";
@@ -269,6 +271,17 @@ export default function PageForm({ id, initialData }: IPageFormProps) {
 
                                         <div className="space-y-6">
                                             <div className="space-y-2">
+                                                <label className="text-sm font-bold text-slate-700 ml-1">Badge Text (Optional)</label>
+                                                <input
+                                                    type="text"
+                                                    value={data.header.badgeText || ""}
+                                                    onChange={(e) => setData({ ...data, header: { ...data.header, badgeText: e.target.value } })}
+                                                    className={inputClass}
+                                                    placeholder="e.g. New Session Open..."
+                                                />
+                                            </div>
+
+                                            <div className="space-y-2">
                                                 <label className="text-sm font-bold text-slate-700 ml-1">Header Title</label>
                                                 <input
                                                     type="text"
@@ -316,6 +329,15 @@ export default function PageForm({ id, initialData }: IPageFormProps) {
                                                                 onChange={(icon) => setData({ ...data, header: { ...data.header, primaryButton: { ...data.header.primaryButton, icon } } })}
                                                             />
                                                         </div>
+                                                        <select
+                                                            value={data.header.primaryButton?.variant || "solid"}
+                                                            onChange={(e) => setData({ ...data, header: { ...data.header, primaryButton: { ...data.header.primaryButton, variant: e.target.value } } })}
+                                                            className={`${inputClass} bg-white text-xs`}
+                                                        >
+                                                            <option value="solid">Solid</option>
+                                                            <option value="outline">Outline</option>
+                                                            <option value="ghost">Ghost</option>
+                                                        </select>
                                                     </div>
                                                 </div>
 
@@ -345,6 +367,15 @@ export default function PageForm({ id, initialData }: IPageFormProps) {
                                                                 onChange={(icon) => setData({ ...data, header: { ...data.header, secondaryButton: { ...data.header.secondaryButton, icon } } })}
                                                             />
                                                         </div>
+                                                        <select
+                                                            value={data.header.secondaryButton?.variant || "outline"}
+                                                            onChange={(e) => setData({ ...data, header: { ...data.header, secondaryButton: { ...data.header.secondaryButton, variant: e.target.value } } })}
+                                                            className={`${inputClass} bg-white text-xs`}
+                                                        >
+                                                            <option value="solid">Solid</option>
+                                                            <option value="outline">Outline</option>
+                                                            <option value="ghost">Ghost</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
