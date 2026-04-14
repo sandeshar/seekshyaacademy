@@ -1,12 +1,12 @@
 import dbConnect from "@/db/db";
 import Homepage from "@/db/homepage";
 import Teacher from "@/db/teachers";
-import { headers } from "next/headers";
+import { connection } from "next/server";
+import { Suspense } from "react";
 
-export default async function SeedStatsPage() {
-    // Access headers to opt-out of static rendering 
-    // and allow DB operations at runtime
-    await headers();
+async function SeedStatsContent() {
+    // Ensure this seed route always runs at request time.
+    await connection();
 
     await dbConnect();
 
@@ -40,6 +40,7 @@ export default async function SeedStatsPage() {
         badgeText: "What is ACCA?",
         title: "Global Professional Accountancy Qualification",
         description: "ACCA (the Association of Chartered Certified Accountants) is the global body for professional accountants, offering business-relevant, first-choice qualifications to people of ambition worldwide.",
+        imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuD9FjJqV3LRHmwHcLQe9ItyjofWWaT1o2Jqbe7czDifiOabrAClY5HLFErF0sCTZsWusYNTZAD3tVroFtI8yjfzNNaR6A7po5O5jYZLVgieWTTmu1vtgsIFgiGX95hlD42faxTu05p5NfAYXIjd9mVi1Jzhz44d0gB5Z5__EUFq753howoR8ZshPMD9bVr5G5n6-QBYy5XwLjzD7udmOwwqBaaRxxYyEBlCCj5wN17RugzMg_nrMDCE6fmM1w2Rgi-rxL7P7mPTi06F",
         bullets: [
             "Recognized in 180+ countries worldwide",
             "High employability and career growth",
@@ -191,5 +192,13 @@ export default async function SeedStatsPage() {
                 <a href="/dashboard/homepage" className="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg">Go to CMS</a>
             </div>
         </div>
+    );
+}
+
+export default function SeedStatsPage() {
+    return (
+        <Suspense fallback={<div className="p-10 font-sans">Seeding homepage data...</div>}>
+            <SeedStatsContent />
+        </Suspense>
     );
 }
