@@ -128,23 +128,25 @@ const CMSPage = ({
 
                 {/* Tabs inside sticky container */}
                 {tabs && tabs.length > 0 && (
-                    <div className="flex p-1 bg-gray-200/50 rounded-2xl mb-2 overflow-x-auto no-scrollbar w-fit">
-                        {tabs.map((tab) => (
-                            <button
-                                key={tab.id}
-                                onClick={() => {
-                                    setActiveTab(tab.id);
-                                    window.scrollTo({ top: 0, behavior: "smooth" });
-                                }}
-                                className={`flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-sm transition-all whitespace-nowrap ${activeTab === tab.id
-                                    ? "bg-white text-primary shadow-sm"
-                                    : "text-gray-500 hover:text-gray-800 hover:bg-white/50"
-                                    }`}
-                            >
-                                <span className="material-symbols-outlined text-[20px]">{tab.icon}</span>
-                                {tab.label}
-                            </button>
-                        ))}
+                    <div className="flex p-1 bg-gray-200/50 rounded-2xl mb-2 overflow-x-auto no-scrollbar w-full max-w-full">
+                        <div className="flex w-max min-w-full space-x-1">
+                            {tabs.map((tab) => (
+                                <button
+                                    key={tab.id}
+                                    onClick={() => {
+                                        setActiveTab(tab.id);
+                                        window.scrollTo({ top: 0, behavior: "smooth" });
+                                    }}
+                                    className={`flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-sm transition-all whitespace-nowrap flex-1 justify-center ${activeTab === tab.id
+                                        ? "bg-white text-primary shadow-sm"
+                                        : "text-gray-500 hover:text-gray-800 hover:bg-white/50"
+                                        }`}
+                                >
+                                    <span className="material-symbols-outlined text-[20px]">{tab.icon}</span>
+                                    {tab.label}
+                                </button>
+                            ))}
+                        </div>
                     </div>
                 )}
             </div>

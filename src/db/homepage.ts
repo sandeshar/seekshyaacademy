@@ -7,6 +7,7 @@ export interface IHomepage extends Document {
         title: string;
         description: string;
         backgroundImage: string;
+        overlayColor: string;
         overlayOpacity: number;
         primaryButton: {
             text: string;
@@ -31,15 +32,20 @@ export interface IHomepage extends Document {
     };
     whyChooseUs: {
         isVisible: boolean;
-        badgeText: string;
         title: string;
         description: string;
-        imageUrl: string;
-        stats: {
-            number: string;
-            text: string;
+        mainCard: {
+            icon: string;
+            title: string;
+            description: string;
+            tags: string[];
         };
-        reasons: {
+        statsCard: {
+            value: string;
+            label: string;
+            icon: string;
+        };
+        items: {
             icon: string;
             title: string;
             description: string;
@@ -49,6 +55,7 @@ export interface IHomepage extends Document {
         isVisible: boolean;
         title: string;
         description: string;
+        imageUrl?: string;
         primaryButton: {
             text: string;
             link: string;
@@ -73,11 +80,38 @@ export interface IHomepage extends Document {
             popular: boolean;
         }[];
     };
+    eligibility: {
+        isVisible: boolean;
+        title: string;
+        imageUrl: string;
+        steps: {
+            step: string;
+            title: string;
+            description: string;
+        }[];
+    };
+    structure: {
+        isVisible: boolean;
+        title: string;
+        description: string;
+        levels: {
+            title: string;
+            items: string[];
+            isOpen: boolean;
+        }[];
+    };
+    mentors: {
+        isVisible: boolean;
+        title: string;
+        description: string;
+        teacherIds: mongoose.Types.ObjectId[];
+    };
     about: {
         isVisible: boolean;
         badgeText: string;
         title: string;
         description: string;
+        imageUrl: string;
         bullets: string[];
         videoUrl?: string;
         stats: {
@@ -93,6 +127,22 @@ export interface IHomepage extends Document {
             icon: string;
         }[];
     };
+    pricing: {
+        isVisible: boolean;
+        title: string;
+        description: string;
+        note: string;
+        columns: string[];
+        rows: string[][];
+    };
+    faqs: {
+        isVisible: boolean;
+        title: string;
+        items: {
+            question: string;
+            answer: string;
+        }[];
+    };
     seo: {
         title: string;
         description: string;
@@ -106,6 +156,7 @@ const HomepageSchema: Schema = new Schema({
         title: { type: String, default: "Seekshya Academy – Your Target to Chartered Accountancy Success" },
         description: { type: String, default: "Comprehensive preparation for ICAN CA New Syllabus 2025. From Foundation to Advisory Level, we guide your journey to becoming a professional." },
         backgroundImage: { type: String, default: "https://lh3.googleusercontent.com/aida-public/AB6AXuD9FjJqV3LRHmwHcLQe9ItyjofWWaT1o2Jqbe7czDifiOabrAClY5HLFErF0sCTZsWusYNTZAD3tVroFtI8yjfzNNaR6A7po5O5jYZLVgieWTTmu1vtgsIFgiGX95hlD42faxTu05p5NfAYXIjd9mVi1Jzhz44d0gB5Z5__EUFq753howoR8ZshPMD9bVr5G5n6-QBYy5XwLjzD7udmOwwqBaaRxxYyEBlCCj5wN17RugzMg_nrMDCE6fmM1w2Rgi-rxL7P7mPTi06F" },
+        overlayColor: { type: String, default: "#ffffff" },
         overlayOpacity: { type: Number, default: 10 },
         primaryButton: {
             text: { type: String, default: "Online Registration" },
@@ -212,15 +263,20 @@ const HomepageSchema: Schema = new Schema({
     },
     whyChooseUs: {
         isVisible: { type: Boolean, default: true },
-        badgeText: { type: String, default: "Why Seekshya Academy" },
-        title: { type: String, default: "Empowering the Next Generation of Finance Leaders" },
+        title: { type: String, default: "Why Seekshya Academy?" },
         description: { type: String, default: "" },
-        imageUrl: { type: String, default: "https://lh3.googleusercontent.com/aida-public/AB6AXuDT0Y03yU5HY9jtLgMnxy7G1aCylO1ifjpKstuXe79FGEByO8DEa_KP0FvyJzv6d2AZhYKOL1ZbDFB8qpPTNcvbP9rk4NUY1ZgX6OWiec7Dvv2cb94MgbFaVE_gpn-KDKveqBjEgN2MGXLqV34okbYpgl5sRGefsXtoFqKPC03zNGecZTYqKfWVEjl9lJPw7Erl5Z9wqYnuu9EJD6ehuIjLvyJZXygJEGPZql-N9CUhjt9RjRmNx3KErtrVN6ovEDpJYx_Bmcq3PgE" },
-        stats: {
-            number: { type: String, default: "92%" },
-            text: { type: String, default: "First-time pass rate in recent CAP-I examinations." }
+        mainCard: {
+            icon: { type: String, default: "military_tech" },
+            title: { type: String, default: "Gold Approved Learning Partner" },
+            description: { type: String, default: "We maintain the highest standards of tuition and student support as recognized by ACCA global." },
+            tags: { type: [String], default: ["Certified Excellence", "Premium Quality"] }
         },
-        reasons: {
+        statsCard: {
+            value: { type: String, default: "92%" },
+            label: { type: String, default: "Consistent pass rate above the global average." },
+            icon: { type: String, default: "analytics" }
+        },
+        items: {
             type: [{
                 icon: { type: String },
                 title: { type: String },
@@ -228,25 +284,20 @@ const HomepageSchema: Schema = new Schema({
             }],
             default: [
                 {
-                    icon: 'verified_user',
-                    title: 'Experienced Faculty',
-                    description: 'Learn from industry veterans and rank-holding CAs who bring real-world experience to the classroom.'
+                    title: "Internship Assistance",
+                    description: "Placement support in top audit firms and corporate houses.",
+                    icon: "work_history",
                 },
                 {
-                    icon: 'account_tree',
-                    title: 'Structured Learning System',
-                    description: 'A meticulously planned academic calendar ensuring timely syllabus completion and ample revision time.'
+                    title: "Expert Mentors",
+                    description: "Learn from industry veterans and qualified chartered accountants.",
+                    icon: "groups",
                 },
                 {
-                    icon: 'emoji_events',
-                    title: 'Proven Success Track Record',
-                    description: 'Join an institute that consistently produces toppers and rank holders in ICAN examinations.'
+                    title: "Flexible Fees",
+                    description: "Affordable installments and scholarship opportunities for deserving students.",
+                    icon: "payments",
                 },
-                {
-                    icon: 'military_tech',
-                    title: 'Exam Success Strategy',
-                    description: 'Proven techniques and mock tests modeled on ICAN standards to maximize your scoring potential.'
-                }
             ]
         }
     },
@@ -254,6 +305,7 @@ const HomepageSchema: Schema = new Schema({
         isVisible: { type: Boolean, default: true },
         title: { type: String, default: "Start Your CA Journey with Seekshya" },
         description: { type: String, default: "Join the premier institute dedicated to your success in the ICAN examinations. Your future as a Chartered Accountant begins here." },
+        imageUrl: { type: String, default: "" },
         primaryButton: {
             text: { type: String, default: "Register Online Today" },
             link: { type: String, default: "/register" },
@@ -306,6 +358,112 @@ const HomepageSchema: Schema = new Schema({
                     icon: 'looks_3',
                     popular: false
                 }
+            ]
+        }
+    },
+    eligibility: {
+        isVisible: { type: Boolean, default: true },
+        title: { type: String, default: "Eligibility Path" },
+        imageUrl: { type: String, default: "https://lh3.googleusercontent.com/aida-public/AB6AXuDXYpUN3HEF4MncjjH6OPB33Bw-y_VO8-qGLNgum9AVPjfx_wc-pcjcLE5wGicGz7SoZU42Iz7yli4BhSbhNDrDF31x77SxC1qu2LF0e2aHbwh5H9Z1qwaMC-eKVCNbjvp60Rf-PExF8H9UHSlReXdK7ww-krAHFar7gQLXhMVCfdBGXBQqjdggBTnqB1eZq7Fo7aAdybVRSZV9QTvoEZ2zpfcaBiCxrZg2yKyle34mG2I9LxmZ_l9UCoD3_FqniTrKXOcKuYL_Hh21" },
+        steps: {
+            type: [{
+                step: String,
+                title: String,
+                description: String
+            }],
+            default: [
+                {
+                    step: "1",
+                    title: "+2 Graduates (Science/Mgmt)",
+                    description: "Students who have completed +2 can directly join the ACCA Applied Knowledge level.",
+                },
+                {
+                    step: "2",
+                    title: "Bachelors/Masters Holders",
+                    description: "Eligible for specific exemptions based on previous academic qualifications in commerce.",
+                },
+                {
+                    step: "3",
+                    title: "School Leavers (SEE)",
+                    description: "Can start via the Foundations in Accountancy (FIA) route to build core competencies.",
+                },
+            ]
+        }
+    },
+    structure: {
+        isVisible: { type: Boolean, default: true },
+        title: { type: String, default: "Course Structure" },
+        description: { type: String, default: "A modular approach to professional excellence" },
+        levels: {
+            type: [{
+                title: String,
+                items: [String],
+                isOpen: { type: Boolean, default: false }
+            }],
+            default: [
+                {
+                    title: "Applied Knowledge Level",
+                    items: ["Business and Technology (BT)", "Management Accounting (MA)", "Financial Accounting (FA)"],
+                    isOpen: true,
+                },
+                {
+                    title: "Applied Skills Level",
+                    items: ["Corporate and Business Law (LW)", "Performance Management (PM)", "Taxation (TX)", "Financial Reporting (FR)", "Audit and Assurance (AA)", "Financial Management (FM)"],
+                    isOpen: false
+                },
+                {
+                    title: "Strategic Professional Level",
+                    items: ["Strategic Business Leader (SBL)", "Strategic Business Reporting (SBR)", "Optional Professional Papers"],
+                    isOpen: false
+                },
+            ]
+        }
+    },
+    mentors: {
+        isVisible: { type: Boolean, default: true },
+        title: { type: String, default: "Learn from the Best" },
+        description: { type: String, default: "Our tutors are qualified experts with years of corporate experience." },
+        teacherIds: [{ type: Schema.Types.ObjectId, ref: 'Teacher' }]
+    },
+    pricing: {
+        isVisible: { type: Boolean, default: true },
+        title: { type: String, default: "Investment in Your Future" },
+        description: { type: String, default: "Transparent fee structure for all academic levels." },
+        note: { type: String, default: "* ACCA UK fees (Registration & Exams) are subject to exchange rate fluctuations and UK pricing updates." },
+        columns: {
+            type: [String],
+            default: ["Course Level", "Admission Fee", "Registration", "Tuition (Per Paper)"]
+        },
+        rows: {
+            type: [[String]],
+            default: [
+                ["Applied Knowledge", "NPR 15,000", "£89 (One-time)", "NPR 12,000"],
+                ["Applied Skills", "--", "--", "NPR 18,000"],
+                ["Strategic Professional", "--", "--", "NPR 25,000"]
+            ]
+        }
+    },
+    faqs: {
+        isVisible: { type: Boolean, default: true },
+        title: { type: String, default: "Frequently Asked Questions" },
+        items: {
+            type: [{
+                question: String,
+                answer: String
+            }],
+            default: [
+                {
+                    question: "How long does it take to complete ACCA?",
+                    answer: "Most students finish ACCA in 2.5 to 3 years, depending on exemptions, pace, and exam scheduling.",
+                },
+                {
+                    question: "Can I work while studying ACCA?",
+                    answer: "Yes. ACCA is designed for flexibility, and many students balance part-time work or internships with study.",
+                },
+                {
+                    question: "Does Seekshya Academy provide mock exams?",
+                    answer: "Yes. Mock exams, revision plans, and guided feedback are part of the academic support structure.",
+                },
             ]
         }
     },

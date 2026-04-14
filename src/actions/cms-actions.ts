@@ -7,6 +7,7 @@ import ContactPage from "@/db/contact-page";
 import CoursePage from "@/db/course-page";
 import FacultyPage from "@/db/faculty-page";
 import Homepage from "@/db/homepage";
+import Teacher from "@/db/teachers";
 import NoticesPage from "@/db/notices-page";
 import BlogsPage from "@/db/blogs-page";
 import { CACHE_TAGS } from "@/utils/cachetags";
@@ -16,10 +17,26 @@ export const getHomepage = async () => {
     "use cache";
     cacheTag(CACHE_TAGS.HOMEPAGE);
     await dbConnect();
-    let page = await Homepage.findOne().lean();
+    let page = await Homepage.findOne().populate({
+        path: 'mentors.teacherIds',
+        model: Teacher,
+        strictPopulate: false
+    }).lean();
     if (!page) {
         page = await Homepage.create({});
     }
+
+    // Ensure pricing exists even if document was created before the schema change
+    if (!page.pricing) {
+        const defaultDoc = new Homepage();
+        page.pricing = defaultDoc.pricing;
+    }
+
+    if (!page.faqs) {
+        const defaultDoc = new Homepage();
+        page.faqs = defaultDoc.faqs;
+    }
+
     return JSON.parse(JSON.stringify(page));
 };
 export const updateHomepage = async (data: any) => {

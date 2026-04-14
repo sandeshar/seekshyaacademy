@@ -31,7 +31,7 @@ export const WhatIsACCA = async () => {
                 <div className="absolute -left-8 -top-8 h-32 w-32 rounded-full bg-primary/5 blur-3xl" />
                 <img
                     className="relative z-10 aspect-square w-full rounded-[2.5rem] object-cover shadow-2xl"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKVfH8M0RAbASaqparGmVahpGOdNOY69d_uiRqmdJ5zsLOTauLZztPeLp02m2ogO7r_zOe1w2CRtmtykGQ5sCm1GDbiXKvRY2_XwM4YJ7648ITbwqAi1OsWrq5b-X3_HwyBydS8laWra_THqt7xO44qWNdFCgMu9XyF3uyImhhmKK37AzRBn-38lR7WBdKfrUsEZiuj6vQo_sTy7fCVWqg2lWqlEkiPLlaruaxClyJZAOQLFRl923AawKqWwV7_-BzBMlXz86BoRpQ"
+                    src={about.imageUrl || "https://lh3.googleusercontent.com/aida-public/AB6AXuDKVfH8M0RAbASaqparGmVahpGOdNOY69d_uiRqmdJ5zsLOTauLZztPeLp02m2ogO7r_zOe1w2CRtmtykGQ5sCm1GDbiXKvRY2_XwM4YJ7648ITbwqAi1OsWrq5b-X3_HwyBydS8laWra_THqt7xO44qWNdFCgMu9XyF3uyImhhmKK37AzRBn-38lR7WBdKfrUsEZiuj6vQo_sTy7fCVWqg2lWqlEkiPLlaruaxClyJZAOQLFRl923AawKqWwV7_-BzBMlXz86BoRpQ"}
                     alt={about.title}
                 />
                 {about.stats && about.stats.length > 0 && (
@@ -77,40 +77,75 @@ export const WhatIsACCA = async () => {
     );
 };
 
-export const WhySeekshya = () => {
+export const WhySeekshya = async () => {
+    const data = await getHomepage();
+    const why = data?.whyChooseUs;
+
+    if (!why || !why.isVisible) return null;
+
     return (
         <section className="bg-surface-container-low py-24">
             <div className="mx-auto max-w-7xl px-4 md:px-8">
                 <div className="mb-16 text-center">
-                    <h2 className="mb-4 font-headline text-3xl font-extrabold text-on-surface md:text-4xl">Why Seekshya Academy?</h2>
+                    <h2 className="mb-4 font-headline text-3xl font-extrabold text-on-surface md:text-4xl">
+                        {why.title}
+                    </h2>
                     <div className="mx-auto h-1.5 w-24 rounded-full bg-secondary" />
+                    {why.description && (
+                        <p className="mt-6 text-on-surface-variant max-w-2xl mx-auto">{why.description}</p>
+                    )}
                 </div>
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-                    <div className="md:col-span-2 flex flex-col justify-between rounded-4xl border border-outline-variant/10 bg-surface-container-lowest p-10 shadow-sm transition-shadow hover:shadow-xl">
-                        <div>
-                            <span className="material-symbols-outlined mb-6 text-4xl text-primary">military_tech</span>
-                            <h3 className="mb-4 font-headline text-2xl font-extrabold text-on-surface md:text-3xl">Gold Approved Learning Partner</h3>
-                            <p className="max-w-md text-lg text-on-surface-variant">We maintain the highest standards of tuition and student support as recognized by ACCA global.</p>
+                    {why.mainCard && (
+                        <div className="md:col-span-2 flex flex-col justify-between rounded-4xl border border-outline-variant/10 bg-surface-container-lowest p-10 shadow-sm transition-shadow hover:shadow-xl">
+                            <div>
+                                <span className="material-symbols-outlined mb-6 text-4xl text-primary">
+                                    {why.mainCard.icon}
+                                </span>
+                                <h3 className="mb-4 font-headline text-2xl font-extrabold text-on-surface md:text-3xl">
+                                    {why.mainCard.title}
+                                </h3>
+                                <p className="max-w-md text-lg text-on-surface-variant">
+                                    {why.mainCard.description}
+                                </p>
+                            </div>
+                            <div className="mt-8 flex flex-wrap gap-4">
+                                {why.mainCard.tags.map((tag: string, idx: number) => (
+                                    <span key={idx} className="rounded-full bg-primary/5 px-4 py-2 text-xs font-bold uppercase tracking-wider text-primary">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
                         </div>
-                        <div className="mt-8 flex flex-wrap gap-4">
-                            <span className="rounded-full bg-primary/5 px-4 py-2 text-xs font-bold uppercase tracking-wider text-primary">Certified Excellence</span>
-                            <span className="rounded-full bg-primary/5 px-4 py-2 text-xs font-bold uppercase tracking-wider text-primary">Premium Quality</span>
-                        </div>
-                    </div>
+                    )}
 
-                    <div className="flex flex-col justify-between rounded-4xl bg-primary p-10 text-white">
-                        <span className="material-symbols-outlined mb-6 text-4xl">analytics</span>
-                        <div>
-                            <h3 className="mb-2 font-headline text-5xl font-extrabold">92%</h3>
-                            <p className="font-semibold text-on-primary/90">Consistent pass rate above the global average.</p>
+                    {why.statsCard && (
+                        <div className="flex flex-col justify-between rounded-4xl bg-primary p-10 text-white">
+                            <span className="material-symbols-outlined mb-6 text-4xl">
+                                {why.statsCard.icon}
+                            </span>
+                            <div>
+                                <h3 className="mb-2 font-headline text-5xl font-extrabold">
+                                    {why.statsCard.value}
+                                </h3>
+                                <p className="font-semibold text-on-primary/90">
+                                    {why.statsCard.label}
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    )}
 
-                    {highlights.slice(2).map((item) => (
-                        <div key={item.title} className="flex flex-col items-center rounded-4xl border border-outline-variant/10 bg-surface-container-lowest p-10 text-center">
-                            <span className="material-symbols-outlined mb-6 text-4xl text-primary">{item.icon}</span>
-                            <h3 className="mb-2 font-headline text-lg font-bold text-on-surface">{item.title}</h3>
-                            <p className="text-sm text-on-surface-variant">{item.description}</p>
+                    {why.items && why.items.map((item: any, idx: number) => (
+                        <div key={idx} className="flex flex-col items-center rounded-4xl border border-outline-variant/10 bg-surface-container-lowest p-10 text-center transition-shadow hover:shadow-md">
+                            <span className="material-symbols-outlined mb-6 text-4xl text-primary">
+                                {item.icon}
+                            </span>
+                            <h3 className="mb-2 font-headline text-lg font-bold text-on-surface">
+                                {item.title}
+                            </h3>
+                            <p className="text-sm text-on-surface-variant">
+                                {item.description}
+                            </p>
                         </div>
                     ))}
                 </div>

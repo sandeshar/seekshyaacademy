@@ -5,6 +5,7 @@ interface CTAProps {
     data?: {
         title: string;
         description: string;
+        imageUrl?: string;
         primaryButton: { text: string; link: string; icon?: string };
         secondaryButton: { text: string; link: string; icon?: string };
     };
@@ -13,6 +14,16 @@ interface CTAProps {
 const CTA = ({ data }: CTAProps) => {
     return (
         <div className="w-full bg-background-dark py-16 md:py-24 relative overflow-hidden">
+            {data?.imageUrl && (
+                <div
+                    className="absolute inset-0 z-0 opacity-20"
+                    style={{
+                        backgroundImage: `url(${data.imageUrl})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center'
+                    }}
+                />
+            )}
             <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(var(--secondary) 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
                 <h2 className="text-3xl md:text-5xl font-black text-white mb-6 tracking-tight font-lexend">{data?.title}</h2>

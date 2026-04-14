@@ -17,7 +17,13 @@ export const HomeHero = async () => {
                         className="h-full w-full object-cover"
                         src={hero.backgroundImage || "https://lh3.googleusercontent.com/aida-public/AB6AXuD9FjJqV3LRHmwHcLQe9ItyjofWWaT1o2Jqbe7czDifiOabrAClY5HLFErF0sCTZsWusYNTZAD3tVroFtI8yjfzNNaR6A7po5O5jYZLVgieWTTmu1vtgsIFgiGX95hlD42faxTu05p5NfAYXIjd9mVi1Jzhz44d0gB5Z5__EUFq753howoR8ZshPMD9bVr5G5n6-QBYy5XwLjzD7udmOwwqBaaRxxYyEBlCCj5wN17RugzMg_nrMDCE6fmM1w2Rgi-rxL7P7mPTi06F"}
                         alt={hero.title}
-                        style={{ opacity: (hero.overlayOpacity || 10) / 100 }}
+                    />
+                    <div
+                        className="absolute inset-0"
+                        style={{
+                            backgroundColor: hero.overlayColor || "#ffffff",
+                            opacity: (hero.overlayOpacity || 10) / 100
+                        }}
                     />
                 </div>
 
