@@ -17,4 +17,5 @@ export const CACHE_TAGS = {
     COURSES: 'courses',
     PAGES: 'pages',
     STUDENT_RANKS: 'student_ranks',
+    LOCATIONS: 'locations',
 } as const;

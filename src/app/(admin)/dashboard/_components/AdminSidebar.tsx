@@ -58,6 +58,15 @@ const menuItems = [
     ],
   },
   {
+    name: "Branches",
+    icon: "map_pin",
+    permission: "cms",
+    subItems: [
+      { name: "All Branches", href: "/dashboard/locations" },
+      { name: "Add New Branch", href: "/dashboard/locations/new" },
+    ],
+  },
+  {
     name: "Site Pages",
     icon: "pages",
     permission: "cms",
