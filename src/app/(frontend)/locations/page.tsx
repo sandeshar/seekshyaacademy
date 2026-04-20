@@ -18,9 +18,9 @@ export default async function LocationsPage() {
                 <div className="absolute inset-0 z-0">
                     <div className="w-full h-full bg-gradient-to-br from-blue-600/10 to-transparent"></div>
                     <div className="absolute top-0 right-0 w-1/3 h-full opacity-20 transform translate-x-1/4">
-                        <img 
-                            alt="" 
-                            className="w-full h-full object-cover" 
+                        <img
+                            alt=""
+                            className="w-full h-full object-cover"
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDV5x8x0BykLxsqmOOxwnHOv1Fz5cUcosfTAdr5ea53WD47Gmb-ItzfsJyLakVOGv6wl69ggEMZdEqCjiN1DX6FR5Pdaj1OVS5JZAl-W1msrmA3w_-VlOI0p1gPfycSwOPIoe2YOGgV_JSd3tMjSShliuqPMNfWh4v2G4_YatdEDk2Xz-zAGQ7-B_Fc3y8P6VG1x5V0xWmRDheIAIdtHBj033nCXvZHUI7MFZY70VfEPtSzgZ54MScd_PT26SdqZNxNxQYJ6223S-hd"
                         />
                     </div>
@@ -47,7 +47,7 @@ export default async function LocationsPage() {
                         <div key={(location as any)._id} className="bg-slate-50 rounded-xl overflow-hidden group hover:bg-white border border-transparent hover:border-slate-100 hover:shadow-xl transition-all duration-300">
                             <div className="relative h-64 overflow-hidden">
                                 {location.image ? (
-                                    <Image 
+                                    <Image
                                         src={location.image}
                                         alt={location.name}
                                         fill
@@ -76,7 +76,7 @@ export default async function LocationsPage() {
                                         <p className="text-slate-600 text-sm font-medium">{location.phone}</p>
                                     </div>
                                 </div>
-                                <Link 
+                                <Link
                                     href={`/locations/${location.slug}`}
                                     className="w-full py-4 bg-slate-200 text-slate-900 font-bold rounded-full hover:bg-slate-900 hover:text-white transition-all flex items-center justify-center gap-2 group/btn"
                                 >
@@ -101,9 +101,9 @@ export default async function LocationsPage() {
                 <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center gap-16">
                     <div className="w-full md:w-1/2">
                         <div className="relative inline-block">
-                            <img 
-                                alt="" 
-                                className="rounded-xl shadow-2xl relative z-10" 
+                            <img
+                                alt=""
+                                className="rounded-xl shadow-2xl relative z-10"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBB6p321UM4NKXtnGbD6Lqc_-9XOoYz2Rc9E4DyGbRsNrviGmlyihUzcFgOS_vVn7OwBAwvDXxchBCrzpIj_9vh7Cs6zhHpQzfn-UKgHi1QFBylssJtEvXrLb963JuyVnoQkHkjKprFurEpLulKY-A2LHcf27lmJhsizLf6BLSjz3C94ggiUInZ9Or1aRDd9xampDUknQWm5LDhUhUT5wKBHt0WOcliq3C9le_6DejnyZSRIynlaCS9ktAsx8E7Kl--32fxOdXOXoIJ"
                             />
                             <div className="absolute -bottom-6 -right-6 w-full h-full border-4 border-blue-600 rounded-xl z-0"></div>

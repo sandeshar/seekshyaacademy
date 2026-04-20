@@ -2,10 +2,10 @@ import { getLocationBySlug } from "@/actions/locations";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { 
-    MapPin, 
-    Phone, 
-    Mail, 
+import {
+    MapPin,
+    Phone,
+    Mail,
     ChevronLeft,
     Clock,
     ArrowUpRight,
@@ -40,14 +40,14 @@ export default async function LocationDetailPage({ params }: ILocationDetailPage
             {/* Ultra Simple Header */}
             <div className="pt-24 pb-8">
                 <div className="max-w-7xl mx-auto px-6">
-                    <Link 
-                        href="/locations" 
+                    <Link
+                        href="/locations"
                         className="inline-flex items-center gap-2 text-slate-400 font-bold text-xs tracking-widest uppercase mb-4 hover:text-blue-600 transition-colors"
                     >
                         <ChevronLeft className="w-3 h-3" />
                         Back to Network
                     </Link>
-                    
+
                     <h1 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight mb-4">
                         {location.name}
                     </h1>
@@ -70,12 +70,12 @@ export default async function LocationDetailPage({ params }: ILocationDetailPage
                 {/* Featured Image */}
                 {location.image && (
                     <div className="relative aspect-video w-full rounded-2xl overflow-hidden mb-8 bg-slate-100">
-                        <Image 
-                            src={location.image} 
-                            alt={location.name} 
-                            fill 
-                            className="object-cover" 
-                            priority 
+                        <Image
+                            src={location.image}
+                            alt={location.name}
+                            fill
+                            className="object-cover"
+                            priority
                         />
                     </div>
                 )}
@@ -96,7 +96,7 @@ export default async function LocationDetailPage({ params }: ILocationDetailPage
                         <div className="space-y-3">
                             <h3 className="text-[10px] font-black text-slate-900 uppercase tracking-widest">Contact Branch</h3>
                             <div className="space-y-2">
-                                <a 
+                                <a
                                     href={`tel:${location.phone}`}
                                     className="flex items-center gap-3 text-slate-600 hover:text-blue-600 transition-colors font-bold text-sm"
                                 >
@@ -104,7 +104,7 @@ export default async function LocationDetailPage({ params }: ILocationDetailPage
                                     {location.phone}
                                 </a>
                                 {location.email && (
-                                    <a 
+                                    <a
                                         href={`mailto:${location.email}`}
                                         className="flex items-center gap-3 text-slate-600 hover:text-blue-600 transition-colors font-bold text-sm break-all"
                                     >
@@ -118,7 +118,7 @@ export default async function LocationDetailPage({ params }: ILocationDetailPage
                         {location.mapUrl && (
                             <div className="space-y-3">
                                 <h3 className="text-[10px] font-black text-slate-900 uppercase tracking-widest">Find Us</h3>
-                                <a 
+                                <a
                                     href={location.mapUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -131,7 +131,7 @@ export default async function LocationDetailPage({ params }: ILocationDetailPage
                         )}
 
                         <div className="pt-6 border-t border-slate-100">
-                            <Link 
+                            <Link
                                 href="/contact"
                                 className="block w-full py-3.5 px-6 bg-blue-600 text-white text-center text-sm font-bold rounded-lg hover:bg-blue-700 transition-all"
                             >
