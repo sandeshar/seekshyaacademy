@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { createStudentRank, updateStudentRank, getStudentRankById } from "@/actions/student-ranks";
+import { getStudentRankCategories } from "@/actions/student-rank-categories";
 import ImageUploader from "../../_components/ImageUploader";
 
 interface IStudentRankFormProps {
@@ -16,6 +17,7 @@ export default function StudentRankForm({ id }: IStudentRankFormProps) {
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isLoading, setIsLoading] = useState(isEditing);
+    const [categories, setCategories] = useState<any[]>([]);
 
     const [formData, setFormData] = useState({
         name: "",
@@ -23,14 +25,25 @@ export default function StudentRankForm({ id }: IStudentRankFormProps) {
         description: "",
         image: "",
         status: "active",
-        order: 0
+        order: 0,
+        categoryId: ""
     });
 
     useEffect(() => {
+        fetchCategories();
         if (isEditing) {
             fetchStudentRank();
         }
     }, [isEditing]);
+
+    const fetchCategories = async () => {
+        try {
+            const data = await getStudentRankCategories({ status: 'active' });
+            setCategories(data);
+        } catch (error) {
+            console.error("Failed to fetch categories");
+        }
+    };
 
     const fetchStudentRank = async () => {
         if (!id) return;
@@ -42,7 +55,8 @@ export default function StudentRankForm({ id }: IStudentRankFormProps) {
                 description: data.description || "",
                 image: data.image || "",
                 status: data.status || "active",
-                order: data.order || 0
+                order: data.order || 0,
+                categoryId: data.categoryId?._id || data.categoryId || ""
             });
         } catch (error) {
             toast.error("Failed to fetch student rank data");
@@ -130,6 +144,19 @@ export default function StudentRankForm({ id }: IStudentRankFormProps) {
                         value={formData.image}
                         onChange={(url) => setFormData({ ...formData, image: url })}
                     />
+                </div>
+                <div>
+                    <label className="block text-sm font-medium text-gray-700">Category</label>
+                    <select
+                        value={formData.categoryId}
+                        onChange={(e) => setFormData({ ...formData, categoryId: e.target.value })}
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-base py-2.5 px-4 border"
+                    >
+                        <option value="">No Category</option>
+                        {categories.map((cat) => (
+                            <option key={cat._id} value={cat._id}>{cat.name}</option>
+                        ))}
+                    </select>
                 </div>
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Status</label>

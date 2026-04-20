@@ -15,6 +15,10 @@ interface IStudentRank {
     image?: string;
     status: string;
     order: number;
+    categoryId?: {
+        _id: string;
+        name: string;
+    } | string;
 }
 
 export default function StudentRanksPage() {
@@ -60,6 +64,13 @@ export default function StudentRanksPage() {
                 </div>
                 <div className="flex gap-4">
                     <Link
+                        href="/dashboard/student-ranks/categories"
+                        className="px-5 py-2.5 bg-gray-100 text-gray-700 font-bold rounded-xl hover:bg-gray-200 transition-all flex items-center gap-2"
+                    >
+                        <span className="material-symbols-outlined text-[20px]">category</span>
+                        Manage Categories
+                    </Link>
+                    <Link
                         href="/dashboard/student-ranks/new"
                         className="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 flex items-center gap-2"
                     >
@@ -99,22 +110,26 @@ export default function StudentRanksPage() {
                                     <tr key={rank._id} className="hover:bg-gray-50 transition-colors">
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <div className="flex items-center">
-                                                <div className="h-10 w-10 flex-shrink-0 relative overflow-hidden rounded-full bg-gray-100">
+                                                <div className="h-10 w-10 flex-shrink-0">
                                                     {rank.image ? (
                                                         <Image
                                                             src={rank.image}
                                                             alt={rank.name}
-                                                            fill
-                                                            className="object-cover"
+                                                            width={40}
+                                                            height={40}
+                                                            className="h-10 w-10 rounded-full object-cover"
                                                         />
                                                     ) : (
-                                                        <div className="h-full w-full flex items-center justify-center text-gray-400 bg-gray-50">
-                                                            <span className="material-symbols-outlined">person</span>
+                                                        <div className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center">
+                                                            <span className="material-symbols-outlined text-gray-400">person</span>
                                                         </div>
                                                     )}
                                                 </div>
                                                 <div className="ml-4">
-                                                    <div className="text-sm font-semibold text-gray-900">{rank.name}</div>
+                                                    <div className="text-sm font-bold text-gray-900">{rank.name}</div>
+                                                    <div className="text-xs text-gray-500">
+                                                        {typeof rank.categoryId === 'object' ? rank.categoryId.name : 'No Category'}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </td>
@@ -131,7 +146,7 @@ export default function StudentRanksPage() {
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-3 flex items-center justify-end h-full">
                                             <Link
-                                                href={`/dashboard/student-ranks/${rank._id}/edit`}
+                                                href={`/dashboard/student-ranks/${rank._id}`}
                                                 className="text-blue-600 hover:text-blue-900 bg-blue-50 p-2 rounded-lg transition-colors"
                                                 title="Edit"
                                             >

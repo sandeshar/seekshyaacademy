@@ -32,9 +32,12 @@ const menuItems = [
   },
   {
     name: "Student Ranks",
-    href: "/dashboard/student-ranks",
     icon: "grade",
     permission: "student-ranks",
+    subItems: [
+      { name: "All Ranks", href: "/dashboard/student-ranks" },
+      { name: "Rank Categories", href: "/dashboard/student-ranks/categories" },
+    ],
   },
   {
     name: "Notices",
@@ -59,7 +62,7 @@ const menuItems = [
   },
   {
     name: "Branches",
-    icon: "map_pin",
+    icon: "location_on",
     permission: "cms",
     subItems: [
       { name: "All Branches", href: "/dashboard/locations" },

@@ -6,6 +6,7 @@ export interface IStudentRank extends Document {
     description: string;
     image?: string;
     order: number;
+    categoryId?: mongoose.Types.ObjectId;
     status: 'active' | 'inactive';
     createdAt: Date;
     updatedAt: Date;
@@ -17,6 +18,7 @@ const StudentRankSchema: Schema = new Schema({
     description: { type: String, required: true },
     image: { type: String },
     order: { type: Number, default: 0 },
+    categoryId: { type: Schema.Types.ObjectId, ref: 'StudentRankCategory' },
     status: { type: String, enum: ['active', 'inactive'], default: 'active' },
 }, {
     timestamps: true

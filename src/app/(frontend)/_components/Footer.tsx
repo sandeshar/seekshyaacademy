@@ -22,12 +22,12 @@ const Footer = async () => {
     ) as Record<string, string>;
 
     return (
-        <footer className="bg-slate-900 text-slate-300 border-t border-slate-800 pt-20 pb-10">
+        <footer className="bg-slate-900 text-slate-300 border-t border-slate-800 pt-16 pb-8">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-8">
                     {/* Column 1: Logo & Description */}
                     <div className="col-span-1 lg:col-span-1">
-                        <div className="flex items-center gap-2 mb-6">
+                        <div className="flex items-center gap-2 mb-4">
                             <Image
                                 src={footerLogo}
                                 alt={footerAlt}
@@ -37,7 +37,7 @@ const Footer = async () => {
                                 style={{ height: `auto`, width: `${logoWidth}px` }}
                             />
                         </div>
-                        <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                        <p className="text-slate-400 text-sm leading-relaxed mb-4">
                             {data.description || settings.siteDescription}
                         </p>
                     </div>
@@ -45,8 +45,8 @@ const Footer = async () => {
                     {/* Dynamic Footer Sections */}
                     {data.footerSections?.map((section: any, idx: number) => (
                         <div key={`section-${idx}`}>
-                            <h3 className="text-white font-bold text-lg mb-6">{section.title}</h3>
-                            <ul className="space-y-3 text-sm">
+                            <h3 className="text-white font-bold text-lg mb-4">{section.title}</h3>
+                            <ul className="space-y-2 text-sm">
                                 {section.links?.map((link: any, i: number) => (
                                     <li key={i}>
                                         <Link className="hover:text-primary transition-colors font-medium block" href={link.href}>
@@ -60,8 +60,8 @@ const Footer = async () => {
 
                     {/* Contact Info (Always the last column if it fits, or wrapping) */}
                     <div>
-                        <h3 className="text-white font-bold text-lg mb-6">Contact Info</h3>
-                        <ul className="space-y-4 text-sm">
+                        <h3 className="text-white font-bold text-lg mb-4">Contact Info</h3>
+                        <ul className="space-y-3 text-sm">
                             {(data.contactInfo?.address || settings.address) && (
                                 <li className="flex items-start gap-3">
                                     <span className="material-symbols-outlined text-primary text-xl mt-0.5">location_on</span>
@@ -83,7 +83,7 @@ const Footer = async () => {
                         </ul>
                     </div>
                 </div>
-                <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+                <div className="border-t border-slate-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
                     <div className="flex flex-col md:flex-row gap-2 md:gap-6 text-center md:text-left">
                         <p className="text-slate-500 text-sm">© <CurrentYear /> {settings.siteName}. All rights reserved.</p>
                         {data.developedBy?.text && (
