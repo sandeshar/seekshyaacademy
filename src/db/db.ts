@@ -11,6 +11,8 @@ import './articles';
 import './categories';
 import './subcategories';
 import './footer';
+import './student-ranks';
+import './student-rank-categories';
 
 const MONGODB_URI = process.env.MONGODB_URI!;
 
