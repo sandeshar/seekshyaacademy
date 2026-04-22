@@ -3,6 +3,7 @@
 import { cacheTag, revalidatePath, revalidateTag } from "next/cache";
 import dbConnect from "@/db/db";
 import StudentRank from "@/db/student-ranks";
+import StudentRankCategory from "@/db/student-rank-categories";
 import { CACHE_TAGS } from "@/utils/cachetags";
 import { deleteFileByUrl } from "./media";
 import { hasPermission } from "@/utils/auth";
@@ -41,6 +42,12 @@ export async function createStudentRank(data: any) {
             const lastRank = await StudentRank.findOne({}).sort({ order: -1 }).lean();
             data.order = lastRank ? (lastRank.order || 0) + 1 : 0;
         }
+
+        // Handle empty categoryId
+        if (data.categoryId === "") {
+            delete data.categoryId;
+        }
+
         const rank = await StudentRank.create(data);
         (revalidateTag as any)(CACHE_TAGS.STUDENT_RANKS);
         revalidatePath('/dashboard/student-ranks');
@@ -53,6 +60,12 @@ export async function createStudentRank(data: any) {
 export async function updateStudentRank(id: string, data: any) {
     try {
         await dbConnect();
+
+        // Handle empty categoryId
+        if (data.categoryId === "") {
+            data.categoryId = null;
+        }
+
         const updatedRank = await StudentRank.findByIdAndUpdate(id, data, { new: true });
         (revalidateTag as any)(CACHE_TAGS.STUDENT_RANKS);
         revalidatePath('/dashboard/student-ranks');
