@@ -86,8 +86,11 @@ export default function ImageUploader({ value, onChange, label, description }: I
         }
     };
 
-    const handleUrlSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
+    const handleUrlSubmit = (e: React.MouseEvent | React.FormEvent | React.KeyboardEvent) => {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
         if (!urlInput.trim()) return;
         onChange(urlInput);
         setIsOpen(false);
@@ -95,7 +98,11 @@ export default function ImageUploader({ value, onChange, label, description }: I
         toast.success("Image URL updated");
     };
 
-    const removeImage = () => {
+    const removeImage = (e?: React.MouseEvent) => {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
         onChange("");
         toast.success("Image removed");
     };
@@ -159,18 +166,28 @@ export default function ImageUploader({ value, onChange, label, description }: I
                         <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-gray-50">
                             <h3 className="text-base font-bold text-gray-900">Add Image</h3>
                             <button
-                                onClick={() => setIsOpen(false)}
+                                type="button"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    setIsOpen(false);
+                                }}
                                 className="p-2 text-gray-400 hover:text-gray-600 hover:bg-white rounded-full transition-all"
                             >
                                 <span className="material-symbols-outlined text-xl">close</span>
                             </button>
                         </div>
 
-                        <div className="p-5">
+                        <div className="p-5" onClick={(e) => e.stopPropagation()}>
                             {/* Tabs */}
                             <div className="flex bg-gray-100 p-1 rounded-lg mb-4">
                                 <button
-                                    onClick={() => setActiveTab("upload")}
+                                    type="button"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        setActiveTab("upload");
+                                    }}
                                     className={`flex-1 flex items-center justify-center gap-2 py-1.5 text-xs font-medium rounded-md transition-all ${activeTab === "upload"
                                         ? "bg-white text-blue-600 shadow-sm"
                                         : "text-gray-500 hover:text-gray-700"
@@ -180,7 +197,12 @@ export default function ImageUploader({ value, onChange, label, description }: I
                                     Upload
                                 </button>
                                 <button
-                                    onClick={() => setActiveTab("library")}
+                                    type="button"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        setActiveTab("library");
+                                    }}
                                     className={`flex-1 flex items-center justify-center gap-2 py-1.5 text-xs font-medium rounded-md transition-all ${activeTab === "library"
                                         ? "bg-white text-blue-600 shadow-sm"
                                         : "text-gray-500 hover:text-gray-700"
@@ -190,7 +212,12 @@ export default function ImageUploader({ value, onChange, label, description }: I
                                     Library
                                 </button>
                                 <button
-                                    onClick={() => setActiveTab("url")}
+                                    type="button"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        setActiveTab("url");
+                                    }}
                                     className={`flex-1 flex items-center justify-center gap-2 py-1.5 text-xs font-medium rounded-md transition-all ${activeTab === "url"
                                         ? "bg-white text-blue-600 shadow-sm"
                                         : "text-gray-500 hover:text-gray-700"
@@ -204,7 +231,11 @@ export default function ImageUploader({ value, onChange, label, description }: I
                             <div className="min-h-[200px]">
                                 {activeTab === "upload" && (
                                     <div
-                                        onClick={() => fileInputRef.current?.click()}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                            if (!isUploading) fileInputRef.current?.click();
+                                        }}
                                         className={`border-2 border-dashed rounded-xl p-6 flex flex-col items-center justify-center gap-3 transition-all cursor-pointer ${isUploading ? "pointer-events-none opacity-50" : "hover:border-blue-400 hover:bg-blue-50/30"
                                             } border-gray-200`}
                                     >
@@ -264,7 +295,9 @@ export default function ImageUploader({ value, onChange, label, description }: I
                                                     {filteredMediaFiles.map((file) => (
                                                         <div
                                                             key={file.url}
-                                                            onClick={() => {
+                                                            onClick={(e) => {
+                                                                e.preventDefault();
+                                                                e.stopPropagation();
                                                                 onChange(file.url);
                                                                 setIsOpen(false);
                                                                 toast.success("Image selected from library");
