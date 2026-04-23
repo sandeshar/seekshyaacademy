@@ -13,6 +13,8 @@ import './subcategories';
 import './footer';
 import './student-ranks';
 import './student-rank-categories';
+import './admission-forms';
+import './admission-submissions';
 
 const MONGODB_URI = process.env.MONGODB_URI!;
 

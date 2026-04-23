@@ -10,7 +10,15 @@ import { UserSession } from "@/utils/auth";
 
 const menuItems = [
   { name: "Dashboard", href: "/dashboard", icon: "dashboard" },
-  { name: "Media Manager", href: "/dashboard/media", icon: "photo_library", permission: "media" },
+  {
+    name: "Admissions",
+    icon: "assignment",
+    permission: "contacts",
+    subItems: [
+      { name: "Manage Forms", href: "/dashboard/admissions" },
+      { name: "View Submissions", href: "/dashboard/admissions/submissions" },
+    ],
+  },
   { name: "Contact Inquiries", href: "/dashboard/contacts", icon: "mail", permission: "contacts" },
   {
     name: "Courses",
@@ -91,6 +99,7 @@ const menuItems = [
       { name: "Footer Settings", href: "/dashboard/footer" },
     ],
   },
+  { name: "Media Manager", href: "/dashboard/media", icon: "photo_library", permission: "media" },
   { name: "Users", href: "/dashboard/users", icon: "person", permission: "users" },
   { name: "Settings", href: "/dashboard/settings", icon: "settings", permission: "settings" },
 ];
