@@ -28,7 +28,7 @@ export const HomeMentors = async () => {
     const data = await getHomepage();
     const mentors = data?.mentors;
 
-    if (!mentors || !mentors.isVisible) return null;
+    if (!mentors || !mentors.isVisible || !mentors.teacherIds || mentors.teacherIds.length === 0) return null;
 
     return (
         <section className="mx-auto max-w-7xl px-4 py-24 md:px-8">
@@ -70,7 +70,7 @@ export const HomePricing = async () => {
     const data = await getHomepage();
     const pricing = data?.pricing;
 
-    if (!pricing || !pricing.isVisible) return null;
+    if (!pricing || !pricing.isVisible || !pricing.rows || pricing.rows.length === 0) return null;
 
     return (
         <section className="mx-auto max-w-7xl px-4 py-24 md:px-8">
@@ -113,7 +113,7 @@ export const HomeFAQ = async () => {
     const data = await getHomepage();
     const faqs = data?.faqs;
 
-    if (!faqs || !faqs.isVisible) return null;
+    if (!faqs || !faqs.isVisible || !faqs.items || faqs.items.length === 0) return null;
 
     return (
         <section className="bg-surface-container-lowest py-24">

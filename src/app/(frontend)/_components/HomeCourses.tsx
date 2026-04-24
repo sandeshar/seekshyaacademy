@@ -6,7 +6,7 @@ export const EligibilityPath = async () => {
     const data = await getHomepage();
     const eligibility = data?.eligibility;
 
-    if (!eligibility || !eligibility.isVisible) return null;
+    if (!eligibility || !eligibility.isVisible || !eligibility.steps || eligibility.steps.length === 0) return null;
 
     return (
         <section className="mx-auto flex max-w-7xl flex-col items-center gap-16 px-4 py-24 md:flex-row md:px-8">
@@ -44,7 +44,7 @@ export const CourseStructure = async () => {
     const data = await getHomepage();
     const structure = data?.structure;
 
-    if (!structure || !structure.isVisible) return null;
+    if (!structure || !structure.isVisible || !structure.levels || structure.levels.length === 0) return null;
 
     return (
         <section className="bg-surface-container py-24">

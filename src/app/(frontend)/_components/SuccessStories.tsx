@@ -61,7 +61,7 @@ const CategorySlider = ({ category }: { category: any }) => {
                                     </div>
 
                                     <div className="flex-1 w-full max-w-[450px]">
-                                        <div className="relative aspect-square overflow-hidden rounded-[32px] shadow-[0_20px_50px_rgba(0,0,0,0.1)] bg-[#c7e9f1] border-[10px] border-white ring-1 ring-slate-100">
+                                        <div className="relative aspect-square overflow-hidden rounded-[32px] bg-[#c7e9f1] border-[10px] border-white ring-1 ring-slate-100">
                                             {student.image ? (
                                                 <Image
                                                     src={student.image}
@@ -177,7 +177,7 @@ export const SuccessStories = () => {
     if (isLoading) return null;
 
     return (
-        <section className="bg-white py-16 md:py-24 lg:py-32">
+        <section id="success-stories" className="bg-white pt-24 pb-16 md:pt-32 md:pb-24 lg:pt-40 lg:pb-32">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-extrabold text-[#002b4d] mb-4">
@@ -207,7 +207,7 @@ export const FeaturedTestimonial = () => {
                     <span className="material-symbols-outlined absolute -top-12 -left-4 select-none text-9xl text-[#004a7c]/10">format_quote</span>
                     <div className="flex flex-col items-center gap-12 md:flex-row">
                         <div className="md:w-1/3">
-                            <img className="h-48 w-48 rounded-3xl object-cover shadow-lg ring-8 ring-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmbEyXvH6EhEk6ndH3evP92ppbUNkI7UTsbMe9tc13F8zcoRkYtLobXW-1egTGQ80h4QvQeaHafv_C0SzAx06Ke17LjLG8g6XJQtJ_-qdde1FKJSQ41_eSzlFI-7-7uCjRywMC2YHc35gFm4NbzqLSNHZgZivD6DTl0nKJbwsp3lwnzqeU9DctQ7rp0doOtn5OSgr0ZzyV26IIbrGvCLedGsss2khKcu1qhzue78G5LfeR7HHgScpnIgmB9A0xbppz_YFGZVWKdZKs" alt="Pukar Thapa" />
+                            <img className="h-48 w-48 rounded-3xl object-cover ring-8 ring-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmbEyXvH6EhEk6ndH3evP92ppbUNkI7UTsbMe9tc13F8zcoRkYtLobXW-1egTGQ80h4QvQeaHafv_C0SzAx06Ke17LjLG8g6XJQtJ_-qdde1FKJSQ41_eSzlFI-7-7uCjRywMC2YHc35gFm4NbzqLSNHZgZivD6DTl0nKJbwsp3lwnzqeU9DctQ7rp0doOtn5OSgr0ZzyV26IIbrGvCLedGsss2khKcu1qhzue78G5LfeR7HHgScpnIgmB9A0xbppz_YFGZVWKdZKs" alt="Pukar Thapa" />
                         </div>
                         <div className="md:w-2/3">
                             <p className="mb-8 text-xl font-medium italic leading-snug text-slate-800 md:text-2xl">
